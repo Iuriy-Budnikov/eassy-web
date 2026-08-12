@@ -100,7 +100,6 @@
 	--btn-bg-active: rgb(168 230 42 / 0.92);
 	--btn-fg: var(--brand-ink);
 	--code-bg: #232328;
-	--glow: 0.22;
 
 	color-scheme: dark;
 }

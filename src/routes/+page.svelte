@@ -195,50 +195,6 @@
 		font-size: var(--font-size-150);
 	}
 
-	/* Atmosphere, not content — a slow drifting readiness gradient. */
-
-	.hero::before,
-	.smarter::before {
-		content: '';
-		position: absolute;
-		top: 42%;
-		left: 50%;
-		width: min(84rem, 150%);
-		height: 56rem;
-		transform: translate(-50%, -50%);
-		background: radial-gradient(
-			ellipse 46% 50% at 50% 50%,
-			rgb(168 230 42 / 0.13),
-			transparent 78%
-		);
-		pointer-events: none;
-		z-index: -1;
-		animation: drift 18s ease-in-out infinite alternate;
-	}
-
-	.smarter::before {
-		top: 50%;
-		opacity: 0.55;
-		animation-duration: 24s;
-		animation-direction: alternate-reverse;
-	}
-
-	@keyframes drift {
-		from {
-			transform: translate(-51%, -52%) scale(1);
-		}
-		to {
-			transform: translate(-49%, -48%) scale(1.08);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.hero::before,
-		.smarter::before {
-			animation: none;
-		}
-	}
-
 	/* Three claims, stacked and large — no feature grid. */
 
 	.pillars {
