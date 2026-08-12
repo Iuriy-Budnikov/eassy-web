@@ -3,6 +3,18 @@
 	import icon from '$lib/assets/eassy-icon.svg';
 	import Footer from '$lib/Footer.svelte';
 
+	/**
+	 * Product shots for the training-history section. Drop the screenshots in
+	 * `$lib/assets/`, import them, and assign them here — the slots render
+	 * themselves once a source exists, so the section stays presentable while
+	 * they're missing.
+	 */
+	const proofs: { label: string; headline: string; shot: string | null }[] = [
+		{ label: 'Readiness', headline: 'Know when to push.', shot: null },
+		{ label: 'Smart Progression', headline: 'Progress when performance supports it.', shot: null },
+		{ label: 'Smart Workouts', headline: 'See the right workout for today.', shot: null }
+	];
+
 	const jsonLd = {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
@@ -71,22 +83,18 @@
 	<div class="inner">
 		<h2>Your training history should tell you what to do next.</h2>
 
-		<ol class="pillars">
-			<li>
-				<p class="label">Readiness</p>
-				<p class="claim">Know when to push, maintain, or recover.</p>
-			</li>
-
-			<li>
-				<p class="label">Smart Progression</p>
-				<p class="claim">Progress weight and reps when your performance supports it.</p>
-			</li>
-
-			<li>
-				<p class="label">Smart Workouts</p>
-				<p class="claim">See the workout that makes the most sense today.</p>
-			</li>
-		</ol>
+		<!-- One idea, three proofs: label → headline → product shot. -->
+		<ul class="proofs">
+			{#each proofs as proof (proof.label)}
+				<li>
+					<p class="label">{proof.label}</p>
+					<h3>{proof.headline}</h3>
+					{#if proof.shot}
+						<img class="shot" src={proof.shot} alt="" loading="lazy" />
+					{/if}
+				</li>
+			{/each}
+		</ul>
 	</div>
 </section>
 
@@ -195,33 +203,66 @@
 		font-size: var(--font-size-150);
 	}
 
-	/* Three claims, stacked and large — no feature grid. */
+	/* Training history — one idea, three proofs. Tighter rhythm than the
+	   other sections: the three capabilities read as one system, not as
+	   three full-screen statements. */
 
-	.pillars {
+	.smarter {
+		padding-block: clamp(var(--space-128), 12vw, 10rem);
+	}
+
+	.smarter h2 {
+		font-size: clamp(1.875rem, 4.2vw, 3rem);
+		letter-spacing: var(--tracking-700);
+		max-width: 56rem;
+		margin-bottom: clamp(var(--space-64), 6vw, var(--space-80));
+	}
+
+	.proofs {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		/* label / headline / shot — subgrid keeps the three rows aligned
+		   across columns even when a headline wraps to two lines. */
+		grid-template-rows: auto auto auto;
+		gap: var(--space-40);
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		text-align: left;
+	}
+
+	.proofs li {
 		display: grid;
-		gap: clamp(var(--space-64), 8vw, var(--space-128));
+		grid-row: span 3;
+		grid-template-rows: subgrid;
+		gap: 0;
 	}
 
 	.label {
-		margin: 0 0 var(--space-12);
+		margin: 0 0 var(--space-16);
 		color: var(--accent-text);
 		font-size: var(--font-size-100);
 		font-weight: var(--weight-semibold);
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.12em;
 	}
 
-	.claim {
-		margin: 0;
-		font-size: clamp(var(--font-size-500), 3.4vw, var(--font-size-700));
-		line-height: 1.2;
-		letter-spacing: var(--tracking-600);
+	.proofs h3 {
+		margin: 0 0 var(--space-32);
+		font-size: clamp(var(--font-size-300), 1.7vw, var(--font-size-400));
+		line-height: 1.25;
+		letter-spacing: var(--tracking-400);
 		font-weight: var(--weight-semibold);
-		max-width: 20ch;
-		margin-inline: auto;
+	}
+
+	/* Screenshots sit on a subtle glass surface rather than a bordered card. */
+	.shot {
+		display: block;
+		width: 100%;
+		height: auto;
+		align-self: start;
+		border-radius: var(--radius-900);
+		background: var(--bg-subtle);
 	}
 
 	/* Buttons — notion.com metrics */
@@ -264,5 +305,20 @@
 
 	.filled:active {
 		background: var(--btn-bg-active);
+	}
+
+	/* Mobile: stack the three proofs, keeping each one compact. */
+
+	@media (max-width: 52rem) {
+		.proofs {
+			grid-template-columns: 1fr;
+			gap: var(--space-48);
+			max-width: 26rem;
+			margin-inline: auto;
+		}
+
+		.proofs h3 {
+			margin-bottom: var(--space-24);
+		}
 	}
 </style>
