@@ -25,9 +25,9 @@
 	</p>
 
 	<p>
-		This Privacy Policy explains how <strong>eassy</strong>, operated by Push Software Development
-		LLC ("eassy," "we," "us," or "our"), handles information when you use the eassy iPhone app,
-		Apple Watch companion, Live Activities, Dynamic Island features, and related services.
+		This Privacy Policy explains how <strong>eassy</strong> ("eassy," "we," "us," or "our") handles
+		information when you use the eassy iPhone app, Apple Watch companion, Live Activities, Dynamic
+		Island features, and related services.
 	</p>
 
 	<p>
@@ -574,11 +574,7 @@
 
 	<p>For questions about this Privacy Policy or privacy requests, contact:</p>
 
-	<p>
-		<strong>Push Software Development LLC</strong><br />
-		Email: <a href="mailto:info@eassy.app">info@eassy.app</a><br />
-		Address: 30 N Gould St Ste R, Sheridan, WY 82801, USA
-	</p>
+	<p>Email: <a href="mailto:info@eassy.app">info@eassy.app</a></p>
 </main>
 
 <style>
