@@ -6,7 +6,7 @@
 	<title>Privacy Policy — eassy</title>
 	<meta
 		name="description"
-		content="Learn how eassy handles workout, health, fitness, Apple Health, Apple Watch, calendar, notification, and sharing data with an on-device-first approach."
+		content="Learn how eassy handles workout, health, fitness, Apple Health, Apple Watch, notification, and sharing data with an on-device-first approach."
 	/>
 	<link rel="canonical" href="https://eassy.app/privacy-policy" />
 	<meta name="robots" content="index, follow" />
@@ -41,7 +41,31 @@
 		account.
 	</p>
 
-	<h2>1. Privacy at a Glance</h2>
+	<ul class="toc">
+		<li><a href="#1-privacy-at-a-glance">1. Privacy at a Glance</a></li>
+		<li><a href="#2-information-eassy-processes">2. Information eassy Processes</a></li>
+		<li><a href="#3-apple-health">3. Apple Health</a></li>
+		<li><a href="#4-apple-watch">4. Apple Watch</a></li>
+		<li><a href="#5-notifications-live-activities-and-push-to-start">5. Notifications, Live Activities, and Push-to-Start</a></li>
+		<li><a href="#6-on-device-ai">6. On-Device AI</a></li>
+		<li><a href="#7-analyze-with-chatgpt">7. Analyze with ChatGPT</a></li>
+		<li><a href="#8-sharing">8. Sharing</a></li>
+		<li><a href="#9-how-we-use-information">9. How We Use Information</a></li>
+		<li><a href="#10-on-device-storage">10. On-Device Storage</a></li>
+		<li><a href="#11-data-sharing-and-third-parties">11. Data Sharing and Third Parties</a></li>
+		<li><a href="#12-data-retention-and-deletion">12. Data Retention and Deletion</a></li>
+		<li><a href="#13-your-choices-and-controls">13. Your Choices and Controls</a></li>
+		<li><a href="#14-your-privacy-rights">14. Your Privacy Rights</a></li>
+		<li><a href="#15-security">15. Security</a></li>
+		<li><a href="#16-health-and-fitness-information">16. Health and Fitness Information</a></li>
+		<li><a href="#17-childrens-privacy">17. Children's Privacy</a></li>
+		<li><a href="#18-international-users">18. International Users</a></li>
+		<li><a href="#19-website-privacy">19. Website Privacy</a></li>
+		<li><a href="#20-changes-to-this-policy">20. Changes to This Policy</a></li>
+		<li><a href="#21-contact">21. Contact</a></li>
+	</ul>
+
+	<h2 id="1-privacy-at-a-glance">1. Privacy at a Glance</h2>
 
 	<ul>
 		<li>
@@ -68,7 +92,7 @@
 		<li><strong>We do not sell personal information or health information.</strong></li>
 	</ul>
 
-	<h2>2. Information eassy Processes</h2>
+	<h2 id="2-information-eassy-processes">2. Information eassy Processes</h2>
 
 	<h3>Workout and Fitness Information</h3>
 
@@ -111,7 +135,7 @@
 		readiness, training metrics, and recommendations.
 	</p>
 
-	<h2>3. Apple Health</h2>
+	<h2 id="3-apple-health">3. Apple Health</h2>
 
 	<p>Connecting Apple Health is optional.</p>
 
@@ -158,7 +182,7 @@
 		through the Health app and applicable iOS privacy settings.
 	</p>
 
-	<h2>4. Apple Watch</h2>
+	<h2 id="4-apple-watch">4. Apple Watch</h2>
 
 	<p>
 		When you use the eassy Apple Watch companion, eassy may process workout information generated
@@ -186,21 +210,7 @@
 		advertising.
 	</p>
 
-	<h2>5. Calendar Access</h2>
-
-	<p>
-		If calendar integration is available in the version of eassy you use and you grant permission,
-		eassy may read calendar information to provide calendar-related training context.
-	</p>
-
-	<p>
-		Calendar access is read-only. eassy does not use this permission to create or modify calendar
-		events.
-	</p>
-
-	<p>You can revoke Calendar permission in iOS Settings.</p>
-
-	<h2>6. Notifications, Live Activities, and Push-to-Start</h2>
+	<h2 id="5-notifications-live-activities-and-push-to-start">5. Notifications, Live Activities, and Push-to-Start</h2>
 
 	<p>If you grant notification permission, eassy may use notifications for:</p>
 
@@ -221,7 +231,7 @@
 		for advertising or behavioral tracking.
 	</p>
 
-	<h2>7. On-Device AI</h2>
+	<h2 id="6-on-device-ai">6. On-Device AI</h2>
 
 	<p>
 		On supported versions of iOS, eassy can use Apple's on-device Foundation Models / Apple
@@ -240,7 +250,7 @@
 		<li>when on-device AI is unavailable, eassy uses deterministic fallback content.</li>
 	</ul>
 
-	<h2>8. Analyze with ChatGPT</h2>
+	<h2 id="7-analyze-with-chatgpt">7. Analyze with ChatGPT</h2>
 
 	<p>
 		eassy includes an optional <strong>Analyze with ChatGPT</strong> action for completed workouts.
@@ -282,7 +292,7 @@
 		instead. Information on your clipboard can be pasted into apps or services you choose.
 	</p>
 
-	<h2>9. Sharing</h2>
+	<h2 id="8-sharing">8. Sharing</h2>
 
 	<p>
 		eassy lets you share workout summaries and workout templates through the standard iOS share
@@ -297,7 +307,7 @@
 		another service.
 	</p>
 
-	<h2>10. How We Use Information</h2>
+	<h2 id="9-how-we-use-information">9. How We Use Information</h2>
 
 	<p>Information processed by eassy may be used to:</p>
 
@@ -323,7 +333,7 @@
 
 	<p>We do not use HealthKit information for advertising or third-party marketing profiles.</p>
 
-	<h2>11. On-Device Storage</h2>
+	<h2 id="10-on-device-storage">10. On-Device Storage</h2>
 
 	<p>
 		The core eassy product stores your workout database and training profile locally on your device.
@@ -348,7 +358,7 @@
 		enable, such as push-notification routing or an external share initiated by you.
 	</p>
 
-	<h2>12. Data Sharing and Third Parties</h2>
+	<h2 id="11-data-sharing-and-third-parties">11. Data Sharing and Third Parties</h2>
 
 	<p>We do not sell your personal information or health information.</p>
 
@@ -394,7 +404,7 @@
 		storage.
 	</p>
 
-	<h2>13. Data Retention and Deletion</h2>
+	<h2 id="12-data-retention-and-deletion">12. Data Retention and Deletion</h2>
 
 	<h3>Local Data</h3>
 
@@ -426,7 +436,7 @@
 		retention and deletion policies.
 	</p>
 
-	<h2>14. Your Choices and Controls</h2>
+	<h2 id="13-your-choices-and-controls">13. Your Choices and Controls</h2>
 
 	<p>You can control access to your information through eassy, iOS, and Apple Health.</p>
 
@@ -434,7 +444,6 @@
 
 	<ul>
 		<li>manage Apple Health read/write permissions;</li>
-		<li>revoke Calendar access;</li>
 		<li>change notification permissions;</li>
 		<li>manage Apple Watch pairing and app access;</li>
 		<li>choose whether to use external sharing;</li>
@@ -448,7 +457,7 @@
 		does not grant eassy access to the protected information.
 	</p>
 
-	<h2>15. Your Privacy Rights</h2>
+	<h2 id="14-your-privacy-rights">14. Your Privacy Rights</h2>
 
 	<p>
 		Depending on where you live and which privacy laws apply, you may have rights concerning
@@ -488,7 +497,7 @@
 
 	<p><a href="mailto:info@eassy.app">info@eassy.app</a></p>
 
-	<h2>16. Security</h2>
+	<h2 id="15-security">15. Security</h2>
 
 	<p>
 		eassy is designed to minimize unnecessary transmission of health and fitness information and
@@ -502,7 +511,7 @@
 		with which you choose to share information.
 	</p>
 
-	<h2>17. Health and Fitness Information</h2>
+	<h2 id="16-health-and-fitness-information">16. Health and Fitness Information</h2>
 
 	<p>Health and fitness information may be sensitive.</p>
 
@@ -532,21 +541,21 @@
 		related features provide fitness guidance and are not intended to constitute medical diagnoses.
 	</p>
 
-	<h2>18. Children's Privacy</h2>
+	<h2 id="17-childrens-privacy">17. Children's Privacy</h2>
 
 	<p>
 		The current eassy product does not include a child account system and does not require users to
 		create an account.
 	</p>
 
-	<h2>19. International Users</h2>
+	<h2 id="18-international-users">18. International Users</h2>
 
 	<p>
 		The primary eassy workout database is stored on-device and is not currently synchronized through
 		an eassy cloud service.
 	</p>
 
-	<h2>20. Website Privacy</h2>
+	<h2 id="19-website-privacy">19. Website Privacy</h2>
 
 	<p>This policy is intended to serve as the website privacy policy for the eassy application.</p>
 
@@ -562,7 +571,7 @@
 		<li>payment processing.</li>
 	</ul>
 
-	<h2>21. Changes to This Policy</h2>
+	<h2 id="20-changes-to-this-policy">20. Changes to This Policy</h2>
 
 	<p>
 		We may update this Privacy Policy when our product, integrations, legal requirements, or privacy
@@ -574,7 +583,7 @@
 		any additional notice required by applicable law.
 	</p>
 
-	<h2>22. Contact</h2>
+	<h2 id="21-contact">21. Contact</h2>
 
 	<p>For questions about this Privacy Policy or privacy requests, contact:</p>
 

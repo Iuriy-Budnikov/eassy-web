@@ -39,7 +39,45 @@
 		use the Service.
 	</p>
 
-	<h2>1. About eassy</h2>
+	<ul class="toc">
+		<li><a href="#1-about-eassy">1. About eassy</a></li>
+		<li><a href="#2-eligibility">2. Eligibility</a></li>
+		<li><a href="#3-no-account-required">3. No Account Required</a></li>
+		<li><a href="#4-app-store-license">4. App Store License</a></li>
+		<li><a href="#5-permitted-use">5. Permitted Use</a></li>
+		<li><a href="#6-fitness-information-is-not-medical-advice">6. Fitness Information Is Not Medical Advice</a></li>
+		<li><a href="#7-training-recommendations-and-smart-progression">7. Training Recommendations and Smart Progression</a></li>
+		<li><a href="#8-apple-health">8. Apple Health</a></li>
+		<li><a href="#9-apple-watch-and-sensor-data">9. Apple Watch and Sensor Data</a></li>
+		<li><a href="#10-calculations-estimates-and-data-accuracy">10. Calculations, Estimates, and Data Accuracy</a></li>
+		<li><a href="#11-on-device-ai-features">11. On-Device AI Features</a></li>
+		<li><a href="#12-analyze-with-chatgpt">12. Analyze with ChatGPT</a></li>
+		<li><a href="#13-notifications-live-activities-and-dynamic-island">13. Notifications, Live Activities, and Dynamic Island</a></li>
+		<li><a href="#14-push-to-start">14. Push-to-Start</a></li>
+		<li><a href="#15-sharing-and-export">15. Sharing and Export</a></li>
+		<li><a href="#16-user-created-content">16. User-Created Content</a></li>
+		<li><a href="#17-exercise-content-and-intellectual-property">17. Exercise Content and Intellectual Property</a></li>
+		<li><a href="#18-third-party-services">18. Third-Party Services</a></li>
+		<li><a href="#19-changes-to-features">19. Changes to Features</a></li>
+		<li><a href="#20-beta-learning-phase-and-experimental-features">20. Beta, Learning-Phase, and Experimental Features</a></li>
+		<li><a href="#21-availability-and-compatibility">21. Availability and Compatibility</a></li>
+		<li><a href="#22-maintenance-and-support">22. Maintenance and Support</a></li>
+		<li><a href="#23-fees-and-paid-features">23. Fees and Paid Features</a></li>
+		<li><a href="#24-privacy">24. Privacy</a></li>
+		<li><a href="#25-suspension-and-termination">25. Suspension and Termination</a></li>
+		<li><a href="#26-disclaimer-of-warranties">26. Disclaimer of Warranties</a></li>
+		<li><a href="#27-limitation-of-liability">27. Limitation of Liability</a></li>
+		<li><a href="#28-indemnification">28. Indemnification</a></li>
+		<li><a href="#29-apple-specific-terms">29. Apple-Specific Terms</a></li>
+		<li><a href="#30-consumer-rights">30. Consumer Rights</a></li>
+		<li><a href="#31-changes-to-these-terms">31. Changes to These Terms</a></li>
+		<li><a href="#32-severability">32. Severability</a></li>
+		<li><a href="#33-no-waiver">33. No Waiver</a></li>
+		<li><a href="#34-entire-agreement">34. Entire Agreement</a></li>
+		<li><a href="#35-contact">35. Contact</a></li>
+	</ul>
+
+	<h2 id="1-about-eassy">1. About eassy</h2>
 
 	<p>eassy is a fitness application designed to help users:</p>
 
@@ -67,7 +105,7 @@
 		and app version.
 	</p>
 
-	<h2>2. Eligibility</h2>
+	<h2 id="2-eligibility">2. Eligibility</h2>
 
 	<p>You may use eassy only if:</p>
 
@@ -84,7 +122,7 @@
 		to these Terms where required by law.
 	</p>
 
-	<h2>3. No Account Required</h2>
+	<h2 id="3-no-account-required">3. No Account Required</h2>
 
 	<p>eassy currently does not require users to create an eassy account.</p>
 
@@ -106,7 +144,7 @@
 		backups you choose to use.
 	</p>
 
-	<h2>4. App Store License</h2>
+	<h2 id="4-app-store-license">4. App Store License</h2>
 
 	<p>The eassy application is made available through Apple's App Store.</p>
 
@@ -134,7 +172,7 @@
 		that conflict.
 	</p>
 
-	<h2>5. Permitted Use</h2>
+	<h2 id="5-permitted-use">5. Permitted Use</h2>
 
 	<p>
 		Subject to these Terms and the applicable App Store license, you may use eassy for your
@@ -167,7 +205,7 @@
 		</li>
 	</ul>
 
-	<h2>6. Fitness Information Is Not Medical Advice</h2>
+	<h2 id="6-fitness-information-is-not-medical-advice">6. Fitness Information Is Not Medical Advice</h2>
 
 	<p>
 		eassy is a <strong>fitness and workout tracking product</strong>, not a medical service.
@@ -222,7 +260,7 @@
 		medical attention.
 	</p>
 
-	<h2>7. Training Recommendations and Smart Progression</h2>
+	<h2 id="7-training-recommendations-and-smart-progression">7. Training Recommendations and Smart Progression</h2>
 
 	<p>
 		eassy may use your workout history, goals, training level, readiness, recovery, training load,
@@ -250,7 +288,7 @@
 		environmental conditions, incomplete history, inaccurate user input, or missing sensor data.
 	</p>
 
-	<h2>8. Apple Health</h2>
+	<h2 id="8-apple-health">8. Apple Health</h2>
 
 	<p>
 		If you choose to connect Apple Health, eassy may read and/or write supported health and fitness
@@ -287,7 +325,7 @@
 		delays, or data supplied by other applications may affect eassy calculations.
 	</p>
 
-	<h2>9. Apple Watch and Sensor Data</h2>
+	<h2 id="9-apple-watch-and-sensor-data">9. Apple Watch and Sensor Data</h2>
 
 	<p>The eassy Apple Watch companion may support:</p>
 
@@ -315,7 +353,7 @@
 		attention.
 	</p>
 
-	<h2>10. Calculations, Estimates, and Data Accuracy</h2>
+	<h2 id="10-calculations-estimates-and-data-accuracy">10. Calculations, Estimates, and Data Accuracy</h2>
 
 	<p>eassy performs calculations using information available to the app.</p>
 
@@ -345,7 +383,7 @@
 		suitable for your individual circumstances.
 	</p>
 
-	<h2>11. On-Device AI Features</h2>
+	<h2 id="11-on-device-ai-features">11. On-Device AI Features</h2>
 
 	<p>
 		On supported devices and operating-system versions, eassy may use Apple's on-device AI
@@ -368,7 +406,7 @@
 
 	<p>When on-device AI is unavailable, eassy may use deterministic fallback content.</p>
 
-	<h2>12. Analyze with ChatGPT</h2>
+	<h2 id="12-analyze-with-chatgpt">12. Analyze with ChatGPT</h2>
 
 	<p>
 		eassy may offer an optional <strong>Analyze with ChatGPT</strong> action.
@@ -398,22 +436,7 @@
 
 	<p>Review third-party advice before using it in training.</p>
 
-	<h2>13. Calendar Integration</h2>
-
-	<p>
-		If eassy offers calendar integration and you grant permission, the app may read supported
-		calendar information to provide training context.
-	</p>
-
-	<p>
-		Calendar access is intended to be read-only unless the product expressly states otherwise.
-	</p>
-
-	<p>Availability depends on operating-system permissions and device configuration.</p>
-
-	<p>You are responsible for managing calendar permission through your device settings.</p>
-
-	<h2>14. Notifications, Live Activities, and Dynamic Island</h2>
+	<h2 id="13-notifications-live-activities-and-dynamic-island">13. Notifications, Live Activities, and Dynamic Island</h2>
 
 	<p>
 		eassy may use notifications, Live Activities, and Dynamic Island to provide workout-related
@@ -440,7 +463,7 @@
 
 	<p>Do not rely on eassy notifications as a safety-critical alerting system.</p>
 
-	<h2>15. Push-to-Start</h2>
+	<h2 id="14-push-to-start">14. Push-to-Start</h2>
 
 	<p>
 		Where available, Push-to-Start may allow a workout-related Live Activity or action to be
@@ -454,7 +477,7 @@
 
 	<p>Push-to-Start is not intended for emergencies or other time-critical safety purposes.</p>
 
-	<h2>16. Sharing and Export</h2>
+	<h2 id="15-sharing-and-export">15. Sharing and Export</h2>
 
 	<p>
 		eassy may allow you to share workout summaries, templates, images, text, or other information
@@ -478,7 +501,7 @@
 		recipient uses, stores, or redistributes it.
 	</p>
 
-	<h2>17. User-Created Content</h2>
+	<h2 id="16-user-created-content">16. User-Created Content</h2>
 
 	<p>You may create content within eassy, such as:</p>
 
@@ -506,7 +529,7 @@
 		or third-party rights.
 	</p>
 
-	<h2>18. Exercise Content and Intellectual Property</h2>
+	<h2 id="17-exercise-content-and-intellectual-property">17. Exercise Content and Intellectual Property</h2>
 
 	<p>
 		The eassy application, software, design, branding, user interface, bundled exercise library,
@@ -528,7 +551,7 @@
 		exercise database, imagery, application design, or software without permission.
 	</p>
 
-	<h2>19. Third-Party Services</h2>
+	<h2 id="18-third-party-services">18. Third-Party Services</h2>
 
 	<p>
 		eassy depends on or interoperates with third-party platforms and services, which may include
@@ -553,7 +576,7 @@
 		technology.
 	</p>
 
-	<h2>20. Changes to Features</h2>
+	<h2 id="19-changes-to-features">19. Changes to Features</h2>
 
 	<p>We may add, modify, suspend, or remove features of eassy.</p>
 
@@ -582,7 +605,7 @@
 		applicable notice or consent requirements.
 	</p>
 
-	<h2>21. Beta, Learning-Phase, and Experimental Features</h2>
+	<h2 id="20-beta-learning-phase-and-experimental-features">20. Beta, Learning-Phase, and Experimental Features</h2>
 
 	<p>
 		Some features may be described as beta, learning phase, experimental, preview, or similar.
@@ -602,7 +625,7 @@
 		You should not rely on experimental or learning-phase features for safety-critical decisions.
 	</p>
 
-	<h2>22. Availability and Compatibility</h2>
+	<h2 id="21-availability-and-compatibility">21. Availability and Compatibility</h2>
 
 	<p>eassy is designed for supported Apple devices and operating-system versions.</p>
 
@@ -624,7 +647,7 @@
 		integration, or third-party service.
 	</p>
 
-	<h2>23. Maintenance and Support</h2>
+	<h2 id="22-maintenance-and-support">22. Maintenance and Support</h2>
 
 	<p>
 		We may provide maintenance and support for eassy at our discretion or as required by applicable
@@ -638,7 +661,7 @@
 		required under Apple's own applicable terms.
 	</p>
 
-	<h2>24. Fees and Paid Features</h2>
+	<h2 id="23-fees-and-paid-features">23. Fees and Paid Features</h2>
 
 	<p>
 		The current product specification does not identify subscriptions, recurring billing, or in-app
@@ -653,7 +676,7 @@
 
 	<p>No future paid feature will be implied by these Terms alone.</p>
 
-	<h2>25. Privacy</h2>
+	<h2 id="24-privacy">24. Privacy</h2>
 
 	<p>Your use of eassy is also governed by the eassy Privacy Policy:</p>
 
@@ -664,7 +687,7 @@
 		information.
 	</p>
 
-	<h2>26. Suspension and Termination</h2>
+	<h2 id="25-suspension-and-termination">25. Suspension and Termination</h2>
 
 	<p>
 		Because eassy currently does not require an account, many traditional account-suspension
@@ -691,7 +714,7 @@
 		any data separately stored in Apple Health or another third-party service.
 	</p>
 
-	<h2>27. Disclaimer of Warranties</h2>
+	<h2 id="26-disclaimer-of-warranties">26. Disclaimer of Warranties</h2>
 
 	<p>
 		To the maximum extent permitted by applicable law, eassy is provided on an
@@ -717,7 +740,7 @@
 		Nothing in these Terms excludes warranties or consumer rights that cannot lawfully be excluded.
 	</p>
 
-	<h2>28. Limitation of Liability</h2>
+	<h2 id="27-limitation-of-liability">27. Limitation of Liability</h2>
 
 	<p>
 		To the maximum extent permitted by applicable law, eassy and its affiliates, officers,
@@ -747,7 +770,7 @@
 		including rights available to consumers under mandatory law.
 	</p>
 
-	<h2>29. Indemnification</h2>
+	<h2 id="28-indemnification">28. Indemnification</h2>
 
 	<p>
 		To the extent permitted by applicable law, you agree to indemnify and hold harmless eassy from
@@ -763,7 +786,7 @@
 
 	<p>This section does not apply where prohibited by mandatory consumer law.</p>
 
-	<h2>30. Apple-Specific Terms</h2>
+	<h2 id="29-apple-specific-terms">29. Apple-Specific Terms</h2>
 
 	<p>For eassy downloaded through Apple's App Store:</p>
 
@@ -802,7 +825,7 @@
 		</li>
 	</ol>
 
-	<h2>31. Consumer Rights</h2>
+	<h2 id="30-consumer-rights">30. Consumer Rights</h2>
 
 	<p>These Terms do not remove rights you have under mandatory consumer-protection law.</p>
 
@@ -816,7 +839,7 @@
 		these Terms applies only to the extent permitted by applicable law.
 	</p>
 
-	<h2>32. Changes to These Terms</h2>
+	<h2 id="31-changes-to-these-terms">31. Changes to These Terms</h2>
 
 	<p>We may update these Terms to reflect:</p>
 
@@ -842,7 +865,7 @@
 		applicable law.
 	</p>
 
-	<h2>33. Severability</h2>
+	<h2 id="32-severability">32. Severability</h2>
 
 	<p>
 		If any provision of these Terms is found invalid or unenforceable, the remaining provisions will
@@ -854,14 +877,14 @@
 		enforceable where the law permits.
 	</p>
 
-	<h2>34. No Waiver</h2>
+	<h2 id="33-no-waiver">33. No Waiver</h2>
 
 	<p>
 		If we do not enforce a provision of these Terms immediately, that does not waive our right to
 		enforce it later.
 	</p>
 
-	<h2>35. Entire Agreement</h2>
+	<h2 id="34-entire-agreement">34. Entire Agreement</h2>
 
 	<p>
 		These Terms, the eassy Privacy Policy, the applicable Apple App Store license, and any
@@ -874,7 +897,7 @@
 		feature to the extent of any conflict.
 	</p>
 
-	<h2>36. Contact</h2>
+	<h2 id="35-contact">35. Contact</h2>
 
 	<p>Questions about these Terms can be sent to:</p>
 

@@ -1,89 +1,94 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
+	import Footer from '$lib/Footer.svelte';
+
 	let { children }: { children: Snippet } = $props();
 </script>
 
-<main>
-	{@render children()}
-</main>
+<div class="wrap">
+	<nav>
+		<a class="home" href="/">eassy</a>
+	</nav>
+
+	<main>
+		{@render children()}
+	</main>
+
+</div>
+
+<Footer />
 
 <style>
-	:global(:root) {
-		--bg: #ffffff;
-		--fg: #1a1a1a;
-		--muted: #5f5f5f;
-		--rule: #e4e4e4;
-		--code-bg: #f2f2f2;
-	}
+	/*
+	 * Long-form layout follows notion.com/trust/privacy-policy: a wide
+	 * left-aligned column, oversized bold headings, no rules between
+	 * sections, and a linked contents list after the intro.
+	 */
 
-	@media (prefers-color-scheme: dark) {
-		:global(:root) {
-			--bg: #131313;
-			--fg: #e8e8e8;
-			--muted: #a0a0a0;
-			--rule: #2e2e2e;
-			--code-bg: #242424;
-		}
-	}
-
-	:global(body) {
-		margin: 0;
-		background: var(--bg);
-		color: var(--fg);
-	}
-
-	main {
-		max-width: 46rem;
+	.wrap {
+		max-width: var(--width-prose);
 		margin-inline: auto;
-		padding: 3rem 1.25rem 6rem;
-		font-family:
-			-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-		font-size: 1rem;
-		line-height: 1.65;
-		text-wrap: pretty;
-		overflow-wrap: break-word;
+		padding: 0 var(--space-16) var(--space-96);
+	}
+
+	nav {
+		padding: var(--space-32) 0;
+	}
+
+	.home {
+		font-size: var(--font-size-300);
+		font-weight: var(--weight-semibold);
+		letter-spacing: var(--tracking-300);
+		color: var(--fg);
+		text-decoration: none;
 	}
 
 	main :global(h1) {
-		font-size: 2rem;
-		line-height: 1.2;
-		margin: 0 0 0.75rem;
-		letter-spacing: -0.02em;
+		font-size: var(--font-size-800);
+		line-height: var(--line-height-800);
+		letter-spacing: var(--tracking-800);
+		font-weight: var(--weight-bold);
+		margin: var(--space-32) 0 var(--space-40);
 	}
 
 	main :global(h2) {
-		font-size: 1.3rem;
-		line-height: 1.3;
-		margin: 3rem 0 0.75rem;
-		padding-top: 1.5rem;
-		border-top: 1px solid var(--rule);
-		letter-spacing: -0.01em;
+		font-size: var(--font-size-700);
+		line-height: var(--line-height-700);
+		letter-spacing: var(--tracking-700);
+		font-weight: var(--weight-bold);
+		margin: var(--space-96) 0 var(--space-40);
+		scroll-margin-top: var(--space-24);
 	}
 
 	main :global(h3) {
-		font-size: 1.05rem;
-		margin: 2rem 0 0.5rem;
+		font-size: var(--font-size-200);
+		line-height: var(--line-height-200);
+		font-weight: var(--weight-bold);
+		margin: var(--space-32) 0 var(--space-16);
 	}
 
 	main :global(p) {
-		margin: 0 0 1rem;
+		margin: 0 0 var(--space-16);
 	}
 
 	main :global(.dates) {
-		color: var(--muted);
-		font-size: 0.925rem;
-		margin-bottom: 2rem;
+		color: var(--fg-muted);
+		margin-bottom: var(--space-32);
 	}
 
 	main :global(ul),
 	main :global(ol) {
-		margin: 0 0 1rem;
-		padding-left: 1.25rem;
+		margin: 0 0 var(--space-16);
+		padding-left: var(--space-24);
 	}
 
 	main :global(li) {
-		margin-bottom: 0.4rem;
+		margin-bottom: var(--space-8);
+	}
+
+	main :global(li)::marker {
+		color: var(--fg-muted);
 	}
 
 	main :global(a) {
@@ -91,10 +96,40 @@
 		text-underline-offset: 0.15em;
 	}
 
+	/* Contents list — plain underlined links, one per line */
+
+	main :global(.toc) {
+		display: grid;
+		gap: var(--space-16);
+		list-style: none;
+		margin: var(--space-40) 0 var(--space-32);
+		padding: 0;
+	}
+
+	main :global(.toc li) {
+		margin: 0;
+	}
+
 	main :global(code) {
 		background: var(--code-bg);
-		border-radius: 4px;
+		border-radius: var(--radius-400);
 		padding: 0.1em 0.35em;
 		font-size: 0.9em;
+	}
+
+
+	@media (max-width: 40rem) {
+		main :global(h1) {
+			font-size: var(--font-size-700);
+			line-height: var(--line-height-700);
+			letter-spacing: var(--tracking-700);
+		}
+
+		main :global(h2) {
+			font-size: var(--font-size-500);
+			line-height: var(--line-height-600);
+			letter-spacing: var(--tracking-500);
+			margin-top: var(--space-64);
+		}
 	}
 </style>
