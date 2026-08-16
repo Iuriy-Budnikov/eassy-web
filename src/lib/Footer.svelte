@@ -14,7 +14,7 @@
 			<span aria-hidden="true">·</span>
 			<a href="/terms-and-conditions">Terms</a>
 			<span aria-hidden="true">·</span>
-			<a href="mailto:info@eassy.app">Support</a>
+			<a href="/support">Support</a>
 		</nav>
 
 		<p class="copyright">© 2026 eassy</p>
