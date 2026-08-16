@@ -2,6 +2,7 @@
 	import { APP_STORE_URL } from '$lib';
 	import icon from '$lib/assets/eassy-icon.svg';
 	import Footer from '$lib/Footer.svelte';
+	import { captureAppStoreClick } from '$lib/analytics';
 
 	/**
 	 * Product shots for the training-history section. Drop the screenshots in
@@ -57,7 +58,11 @@
 			<span>eassy</span>
 		</a>
 
-		<a class="btn filled small" href={APP_STORE_URL}>Download on the App Store</a>
+		<a
+			class="btn filled small"
+			href={APP_STORE_URL}
+			onclick={() => captureAppStoreClick('topbar')}>Download on the App Store</a
+		>
 	</div>
 </header>
 
@@ -72,7 +77,9 @@
 			Progress at the right pace.
 		</p>
 
-		<a class="btn filled" href={APP_STORE_URL}>Download on the App Store</a>
+		<a class="btn filled" href={APP_STORE_URL} onclick={() => captureAppStoreClick('hero')}
+			>Download on the App Store</a
+		>
 
 		<p class="platforms"><em>iPhone + Apple Watch</em></p>
 	</div>
@@ -113,7 +120,9 @@
 			No eassy account required.
 		</p>
 
-		<a class="btn filled" href={APP_STORE_URL}>Download on the App Store</a>
+		<a class="btn filled" href={APP_STORE_URL} onclick={() => captureAppStoreClick('closing')}
+			>Download on the App Store</a
+		>
 	</div>
 </section>
 

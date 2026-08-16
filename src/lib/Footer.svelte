@@ -1,5 +1,6 @@
 <script lang="ts">
 	import icon from '$lib/assets/eassy-icon.svg';
+	import { reopenConsent } from '$lib/consent.svelte';
 </script>
 
 <footer>
@@ -15,6 +16,10 @@
 			<a href="/terms-and-conditions">Terms</a>
 			<span aria-hidden="true">·</span>
 			<a href="/support">Support</a>
+			<span aria-hidden="true">·</span>
+			<!-- Withdrawing consent has to be as easy as granting it, so this
+			     re-opens the banner rather than living behind a settings page. -->
+			<button type="button" onclick={reopenConsent}>Cookies</button>
 		</nav>
 
 		<p class="copyright">© 2026 eassy</p>
@@ -61,7 +66,8 @@
 		font-size: var(--font-size-150);
 	}
 
-	nav a {
+	nav a,
+	nav button {
 		color: var(--fg-muted);
 		text-decoration: underline;
 		text-decoration-color: transparent;
@@ -69,7 +75,18 @@
 		transition: color 120ms ease, text-decoration-color 120ms ease;
 	}
 
-	nav a:hover {
+	/* The cookie control is an action, not a destination, so it is a button —
+	   stripped back to match the links it sits beside. */
+	nav button {
+		padding: 0;
+		background: none;
+		border: 0;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	nav a:hover,
+	nav button:hover {
 		color: var(--fg);
 		text-decoration-color: currentColor;
 	}

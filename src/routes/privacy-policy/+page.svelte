@@ -559,17 +559,41 @@
 
 	<p>This policy is intended to serve as the website privacy policy for the eassy application.</p>
 
-	<p>The current product specification does not identify website:</p>
+	<p>The website does not use:</p>
 
 	<ul>
 		<li>accounts;</li>
-		<li>advertising;</li>
-		<li>analytics;</li>
-		<li>cookies;</li>
-		<li>tracking technologies;</li>
+		<li>advertising or cross-site tracking technologies;</li>
 		<li>contact forms;</li>
 		<li>payment processing.</li>
 	</ul>
+
+	<h3>Website analytics</h3>
+
+	<p>
+		With your consent, this website uses PostHog to measure how the site is used — for example
+		which pages are visited, which site referred you, and whether the App Store link was used.
+		This tells us whether the site is doing its job; it is not used for advertising and is not
+		combined with the training data held in the eassy app.
+	</p>
+
+	<p>
+		No analytics cookies are set and no analytics data is collected until you accept them in the
+		banner shown on your first visit. If you decline, nothing is collected. You can change your
+		choice at any time using the <strong>Cookies</strong> link in the site footer.
+	</p>
+
+	<p>
+		Website analytics are anonymous. We do not create a user profile for site visitors, and site
+		activity is not linked to any eassy app installation or to any identity.
+	</p>
+
+	<p>
+		PostHog acts as our processor for this data. See
+		<a href="https://posthog.com/privacy" rel="noopener noreferrer" target="_blank"
+			>PostHog's privacy policy</a
+		> for how they handle it.
+	</p>
 
 	<h2 id="20-changes-to-this-policy">20. Changes to This Policy</h2>
 
