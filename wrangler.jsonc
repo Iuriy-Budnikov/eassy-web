@@ -4,6 +4,22 @@
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_date": "2026-08-12",
 	"compatibility_flags": ["nodejs_compat"],
+	// Hostnames live here rather than only in the Cloudflare dashboard, so the
+	// deployment target is reviewable and reproducible from the repo.
+	//
+	// Custom Domains rather than routes: Cloudflare then owns the DNS record
+	// and the certificate for each hostname, and the worker receives the whole
+	// request rather than only the paths a route pattern happens to match.
+	//
+	// `www` did not resolve at all before this, so typing it failed outright.
+	// It serves the same site rather than redirecting; every page already
+	// hardcodes `<link rel="canonical" href="https://eassy.app/...">`, so
+	// search engines are told the apex is canonical and the duplicate hostname
+	// costs nothing.
+	"routes": [
+		{ "pattern": "eassy.app", "custom_domain": true },
+		{ "pattern": "www.eassy.app", "custom_domain": true }
+	],
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
