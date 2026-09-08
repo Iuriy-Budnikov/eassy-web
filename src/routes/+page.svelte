@@ -298,8 +298,10 @@
 	}
 
 	/* Buttons — sizing after teamtopia.io (50px tall, 14px/20px padding, 16px
-	   semibold, hairline shadow), but a rounded-square corner rather than their
-	   full pill. */
+	   semibold, hairline shadow), but squircle corners rather than their pill.
+	   `corner-shape` is progressive: where it is unsupported the cap simply falls
+	   back to an ordinary rounded rectangle at the same radius, which is why the
+	   radii below are chosen to look right either way. */
 
 	.btn {
 		display: inline-flex;
@@ -310,7 +312,8 @@
 		min-height: 3.125rem;
 		padding: 0.875rem 1.25rem;
 		border: 1px solid transparent;
-		border-radius: var(--radius-900);
+		border-radius: 1.25rem;
+		corner-shape: squircle;
 		font-size: var(--font-size-200);
 		line-height: 1.25rem;
 		font-weight: var(--weight-semibold);
@@ -325,9 +328,9 @@
 	.btn.small {
 		min-height: 2.5rem;
 		padding: 0 var(--space-16);
-		/* Softer corner on the smaller cap so the curve reads the same as the
-		   large button rather than swallowing it. */
-		border-radius: var(--radius-700);
+		/* Held to the same ~40% of height as the large cap so the squircle reads
+		   at the same strength rather than swallowing the shorter button. */
+		border-radius: var(--radius-900);
 		font-size: var(--font-size-100);
 	}
 
