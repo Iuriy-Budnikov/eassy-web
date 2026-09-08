@@ -2,19 +2,8 @@
 	import { APP_STORE_URL } from '$lib';
 	import icon from '$lib/assets/eassy-icon.svg';
 	import Footer from '$lib/Footer.svelte';
+	import PhoneVideo from '$lib/PhoneVideo.svelte';
 	import { captureAppStoreClick } from '$lib/analytics';
-
-	/**
-	 * Product shots for the training-history section. Drop the screenshots in
-	 * `$lib/assets/`, import them, and assign them here — the slots render
-	 * themselves once a source exists, so the section stays presentable while
-	 * they're missing.
-	 */
-	const proofs: { label: string; headline: string; shot: string | null }[] = [
-		{ label: 'Readiness', headline: 'Know when to push.', shot: null },
-		{ label: 'Smart Progression', headline: 'Progress when performance supports it.', shot: null },
-		{ label: 'Smart Workouts', headline: 'See the right workout for today.', shot: null }
-	];
 
 	const jsonLd = {
 		'@context': 'https://schema.org',
@@ -30,23 +19,30 @@
 </script>
 
 <svelte:head>
-	<title>eassy — Strength Training, Smarter</title>
+	<title>eassy — Less app. More training.</title>
 	<meta
 		name="description"
-		content="Track workouts, understand your readiness, and progress with confidence on iPhone and Apple Watch."
+		content="Log your workouts, understand your readiness, and see your progress over time. Minimal strength tracking for iPhone and Apple Watch."
 	/>
 	<link rel="canonical" href="https://eassy.app/" />
 	<meta name="robots" content="index, follow" />
-	<meta property="og:title" content="eassy — Know what to train. Know when to push." />
-	<meta property="og:description" content="A smarter strength workout tracker for iPhone and Apple Watch." />
+	<meta property="og:title" content="eassy — Less app. More training." />
+	<meta
+		property="og:description"
+		content="Minimal strength tracking for iPhone and Apple Watch."
+	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://eassy.app/" />
-	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="eassy — Know what to train. Know when to push." />
+	<meta property="og:image" content="https://eassy.app/og.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="eassy — Less app. More training." />
 	<meta
 		name="twitter:description"
-		content="A smarter strength workout tracker for iPhone and Apple Watch."
+		content="Minimal strength tracking for iPhone and Apple Watch."
 	/>
+	<meta name="twitter:image" content="https://eassy.app/og.jpg" />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
 </svelte:head>
@@ -69,12 +65,13 @@
 <!-- 1. Hero -->
 <section class="hero">
 	<div class="inner">
-		<h1>Know what to train.<br />Know when to push.</h1>
+		<p class="eyebrow">Minimal strength tracking</p>
+
+		<h1>Less app. More training.</h1>
 
 		<p class="lines">
-			Track your workouts.<br />
-			Understand your readiness.<br />
-			Progress at the right pace.
+			Log your workouts, understand your readiness,<br />
+			and see your progress over time.
 		</p>
 
 		<a class="btn filled" href={APP_STORE_URL} onclick={() => captureAppStoreClick('hero')}
@@ -85,40 +82,50 @@
 	</div>
 </section>
 
-<!-- 2. Smarter training -->
-<section class="smarter">
-	<div class="inner">
-		<h2>Your training history should tell you what to do next.</h2>
+<!-- 2. Trends -->
+<section class="split">
+	<div class="inner two-col">
+		<div class="copy">
+			<p class="eyebrow">Trends</p>
+			<h2>Progress,<br />without the noise.</h2>
+			<p class="lines">
+				See load, volume, duration, energy,<br />
+				and performance in context.
+			</p>
+		</div>
 
-		<!-- One idea, three proofs: label → headline → product shot. -->
-		<ul class="proofs">
-			{#each proofs as proof (proof.label)}
-				<li>
-					<p class="label">{proof.label}</p>
-					<h3>{proof.headline}</h3>
-					{#if proof.shot}
-						<img class="shot" src={proof.shot} alt="" loading="lazy" />
-					{/if}
-				</li>
-			{/each}
-		</ul>
+		<PhoneVideo
+			src="/media/trends.mp4"
+			poster="/media/trends-poster.jpg"
+			label="The Trends screen in eassy, showing weekly training load, volume and summary totals."
+		/>
 	</div>
 </section>
 
-<!-- 3. Built for Apple -->
-<section class="apple">
+<!-- 3. Training Balance — media on the left, mirroring the section above. -->
+<section class="split">
+	<div class="inner two-col reversed">
+		<div class="copy">
+			<p class="eyebrow">Training Balance</p>
+			<h2>Stay in balance.</h2>
+			<p class="lines">
+				See how your recent training load compares<br />
+				with what your body is adapted to.
+			</p>
+		</div>
+
+		<PhoneVideo
+			src="/media/training-balance.mp4"
+			poster="/media/training-balance-poster.jpg"
+			label="The Training Balance screen in eassy, showing a seven-day training load chart."
+		/>
+	</div>
+</section>
+
+<!-- 4. Closing -->
+<section class="closing">
 	<div class="inner">
-		<h2>Train from your wrist.<br />Keep your data yours.</h2>
-
-		<p class="lines">
-			Workout on iPhone or Apple Watch.<br />
-			Connect Apple Health when you want more context.
-		</p>
-
-		<p class="lines muted">
-			Your core workout data stays on your iPhone.<br />
-			No eassy account required.
-		</p>
+		<h2>Your core workout data stays on your iPhone.</h2>
 
 		<a class="btn filled" href={APP_STORE_URL} onclick={() => captureAppStoreClick('closing')}
 			>Download on the App Store</a
@@ -164,11 +171,21 @@
 		border-radius: 22%;
 	}
 
-	/* One message per screen: each section gets its own generous block. */
+	/* One message per screen: each section gets its own generous block, with a
+	   hairline between them so the media blocks read as separate statements. */
 
 	section {
 		position: relative;
-		padding: clamp(var(--space-96), 16vw, 15rem) var(--space-16);
+		padding: clamp(var(--space-80), 12vw, var(--space-128)) var(--space-16);
+		/* The glow behind each phone deliberately bleeds past its frame; on narrow
+		   screens that bleed is wide enough to pan the page sideways. Clip it here
+		   rather than shrinking the glow — `clip` on one axis leaves the other
+		   visible, which `hidden` would not. */
+		overflow-x: clip;
+	}
+
+	section + section {
+		border-top: 1px solid var(--border);
 	}
 
 	.inner {
@@ -177,21 +194,33 @@
 		text-align: center;
 	}
 
+	.eyebrow {
+		margin: 0 0 var(--space-24);
+		color: var(--accent-text);
+		font-size: var(--font-size-100);
+		font-weight: var(--weight-semibold);
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+	}
+
 	h1 {
 		font-size: clamp(2.625rem, 7vw, var(--font-size-900));
 		line-height: 1.05;
 		letter-spacing: var(--tracking-900);
 		font-weight: var(--weight-bold);
-		margin: 0 0 var(--space-40);
+		margin: 0 0 var(--space-32);
 	}
 
 	h2 {
-		font-size: clamp(2rem, 5vw, var(--font-size-800));
+		font-size: clamp(2rem, 4.6vw, var(--font-size-700));
 		line-height: 1.1;
 		letter-spacing: var(--tracking-800);
 		font-weight: var(--weight-bold);
-		margin: 0 0 var(--space-40);
+		margin: 0 0 var(--space-24);
 		max-width: 24ch;
+	}
+
+	.inner > h2 {
 		margin-inline: auto;
 	}
 
@@ -199,11 +228,12 @@
 		font-size: clamp(var(--font-size-300), 2.2vw, var(--font-size-400));
 		line-height: 1.6;
 		letter-spacing: var(--tracking-400);
-		margin: 0 0 var(--space-48);
+		color: var(--fg-muted);
+		margin: 0 0 var(--space-40);
 	}
 
-	.lines.muted {
-		color: var(--fg-muted);
+	.copy .lines {
+		margin-bottom: 0;
 	}
 
 	.platforms {
@@ -212,66 +242,58 @@
 		font-size: var(--font-size-150);
 	}
 
-	/* Training history — one idea, three proofs. Tighter rhythm than the
-	   other sections: the three capabilities read as one system, not as
-	   three full-screen statements. */
+	/* Alternating media sections. */
 
-	.smarter {
-		padding-block: clamp(var(--space-128), 12vw, 10rem);
-	}
-
-	.smarter h2 {
-		font-size: clamp(1.875rem, 4.2vw, 3rem);
-		letter-spacing: var(--tracking-700);
-		max-width: 56rem;
-		margin-bottom: clamp(var(--space-64), 6vw, var(--space-80));
-	}
-
-	.proofs {
+	.two-col {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		/* label / headline / shot — subgrid keeps the three rows aligned
-		   across columns even when a headline wraps to two lines. */
-		grid-template-rows: auto auto auto;
-		gap: var(--space-40);
-		list-style: none;
-		margin: 0;
-		padding: 0;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: clamp(var(--space-40), 6vw, var(--space-96));
 		text-align: left;
 	}
 
-	.proofs li {
-		display: grid;
-		grid-row: span 3;
-		grid-template-rows: subgrid;
-		gap: 0;
+	/* Reverse visually without reordering the DOM, so the reading order stays
+	   eyebrow → headline → body → media in every section. */
+	.two-col.reversed {
+		direction: rtl;
 	}
 
-	.label {
-		margin: 0 0 var(--space-16);
-		color: var(--accent-text);
-		font-size: var(--font-size-100);
-		font-weight: var(--weight-semibold);
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
+	.two-col.reversed > :global(*) {
+		direction: ltr;
 	}
 
-	.proofs h3 {
-		margin: 0 0 var(--space-32);
-		font-size: clamp(var(--font-size-300), 1.7vw, var(--font-size-400));
-		line-height: 1.25;
-		letter-spacing: var(--tracking-400);
-		font-weight: var(--weight-semibold);
+	.closing h2 {
+		max-width: 20ch;
+		margin-bottom: var(--space-40);
 	}
 
-	/* Screenshots sit on a subtle glass surface rather than a bordered card. */
-	.shot {
-		display: block;
-		width: 100%;
-		height: auto;
-		align-self: start;
-		border-radius: var(--radius-900);
-		background: var(--bg-subtle);
+	/* Mobile: one column, media last, and the headline line breaks stop being
+	   deliberate once the measure is this narrow. */
+
+	@media (max-width: 52rem) {
+		.two-col {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.two-col.reversed {
+			direction: ltr;
+		}
+
+		.copy .lines {
+			margin-bottom: var(--space-40);
+		}
+
+		h2 {
+			margin-inline: auto;
+		}
+	}
+
+	@media (max-width: 30rem) {
+		h2 br,
+		.lines br {
+			display: none;
+		}
 	}
 
 	/* Buttons — notion.com metrics */
@@ -314,20 +336,5 @@
 
 	.filled:active {
 		background: var(--btn-bg-active);
-	}
-
-	/* Mobile: stack the three proofs, keeping each one compact. */
-
-	@media (max-width: 52rem) {
-		.proofs {
-			grid-template-columns: 1fr;
-			gap: var(--space-48);
-			max-width: 26rem;
-			margin-inline: auto;
-		}
-
-		.proofs h3 {
-			margin-bottom: var(--space-24);
-		}
 	}
 </style>
