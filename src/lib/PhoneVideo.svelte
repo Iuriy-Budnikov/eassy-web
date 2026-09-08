@@ -4,14 +4,20 @@
 	 *
 	 * The source clips already contain a rendered iPhone on a pure black
 	 * background, so there is no CSS device frame here — `mix-blend-mode: screen`
-	 * drops the black against the page and lets the glow behind the phone read
-	 * through. That also means the clips must stay black-surrounded; a recording
-	 * with any other backdrop would show as a rectangle.
+	 * drops the black against the page. That also means the clips must stay
+	 * black-surrounded; a recording with any other backdrop would show as a
+	 * rectangle.
 	 *
 	 * Playback is driven by hand rather than by the `autoplay` attribute so a
 	 * video that is nowhere near the viewport never decodes.
+	 *
+	 * `src` names the H.264 file; the AV1 sibling next to it is offered first,
+	 * being both smaller and measurably higher quality on this kind of flat UI
+	 * footage. Browsers without AV1 fall through to the H.264 on their own.
 	 */
 	let { src, poster, label }: { src: string; poster: string; label: string } = $props();
+
+	const av1 = $derived(src.replace(/\.mp4$/, '.av1.mp4'));
 
 	let video: HTMLVideoElement;
 
@@ -39,8 +45,10 @@
 </script>
 
 <div class="frame">
-	<video bind:this={video} {src} {poster} aria-label={label} muted loop playsinline
-		preload="metadata"></video>
+	<video bind:this={video} {poster} aria-label={label} muted loop playsinline preload="metadata">
+		<source src={av1} type="video/mp4; codecs=av01.0.08M.08" />
+		<source {src} type="video/mp4; codecs=avc1.640033" />
+	</video>
 </div>
 
 <style>
