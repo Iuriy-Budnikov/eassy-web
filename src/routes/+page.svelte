@@ -78,7 +78,13 @@
 			>Download on the App Store</a
 		>
 
-		<p class="platforms"><em>iPhone + Apple Watch</em></p>
+		<div class="hero-media">
+			<PhoneVideo
+				src="/media/trends.mp4"
+				poster="/media/trends-poster.jpg"
+				label="The Trends screen in eassy, showing weekly training load, volume and summary totals."
+			/>
+		</div>
 	</div>
 </section>
 
@@ -231,10 +237,15 @@
 		margin-bottom: 0;
 	}
 
-	.platforms {
-		margin: var(--space-24) 0 0;
-		color: var(--fg-muted);
-		font-size: var(--font-size-150);
+	/* Hero — centred, with the clip below the call to action so the headline
+	   still owns the top of the page. */
+
+	.hero {
+		padding-bottom: clamp(var(--space-48), 6vw, var(--space-80));
+	}
+
+	.hero-media {
+		margin-top: clamp(var(--space-48), 7vw, var(--space-96));
 	}
 
 	/* Alternating media sections. */
