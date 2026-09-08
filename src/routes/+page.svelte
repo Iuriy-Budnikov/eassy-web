@@ -297,7 +297,9 @@
 		}
 	}
 
-	/* Buttons — notion.com metrics */
+	/* Buttons — sizing after teamtopia.io (50px tall, 14px/20px padding, 16px
+	   semibold, hairline shadow), but a rounded-square corner rather than their
+	   full pill. */
 
 	.btn {
 		display: inline-flex;
@@ -305,24 +307,28 @@
 		justify-content: center;
 		gap: var(--space-12);
 		box-sizing: border-box;
-		min-height: 2.875rem;
-		padding: 0.6875rem 1.25rem;
+		min-height: 3.125rem;
+		padding: 0.875rem 1.25rem;
 		border: 1px solid transparent;
-		border-radius: var(--radius-500);
+		border-radius: var(--radius-900);
 		font-size: var(--font-size-200);
-		line-height: var(--line-height-200);
-		font-weight: var(--weight-medium);
-		letter-spacing: 0;
+		line-height: 1.25rem;
+		font-weight: var(--weight-semibold);
+		letter-spacing: -0.00625rem;
 		text-align: center;
 		text-decoration: none;
-		transition-property: background-color, color;
-		transition-duration: 120ms;
+		box-shadow: 0 1px 0 rgb(0 0 0 / 19%);
+		transition-property: background-color, color, box-shadow;
+		transition-duration: 250ms;
 	}
 
 	.btn.small {
-		min-height: 2.25rem;
-		padding: 0.25rem 0.875rem;
-		font-size: var(--font-size-150);
+		min-height: 2.5rem;
+		padding: 0 var(--space-16);
+		/* Softer corner on the smaller cap so the curve reads the same as the
+		   large button rather than swallowing it. */
+		border-radius: var(--radius-700);
+		font-size: var(--font-size-100);
 	}
 
 	.filled {
