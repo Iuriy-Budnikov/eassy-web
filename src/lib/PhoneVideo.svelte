@@ -22,7 +22,7 @@
 	let frame: HTMLDivElement;
 	let video: HTMLVideoElement;
 
-	/** Both effects below sit out entirely when the reader has asked for less motion. */
+	/** The effects below sit out entirely when the reader has asked for less motion. */
 	const still = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	$effect(() => {
@@ -48,9 +48,14 @@
 	});
 
 	/**
-	 * Scroll parallax. GSAP is loaded on demand rather than bundled — it is dead
-	 * weight for anyone who never scrolls past the hero, and this page already
-	 * treats heavy third-party code that way (see `analytics.ts`).
+	 * Reveal and parallax, both on GSAP. It is loaded on demand rather than
+	 * bundled — dead weight for anyone who never scrolls past the hero, and this
+	 * page already treats heavy third-party code that way (see `analytics.ts`).
+	 *
+	 * Note that the opacity floor is set by GSAP rather than in CSS. Starting the
+	 * clip hidden in the stylesheet would leave it permanently invisible on any
+	 * page where this import fails, so the markup's default stays opaque and only
+	 * a page that actually has GSAP dims it in order to fade it back up.
 	 */
 	$effect(() => {
 		if (still()) return;
@@ -69,6 +74,16 @@
 			gsap.registerPlugin(ScrollTrigger);
 
 			ctx = gsap.context(() => {
+				gsap.from(video, {
+					opacity: 0,
+					duration: 0.9,
+					ease: 'power3.out',
+					scrollTrigger: { trigger: frame, start: 'top 88%', once: true }
+				});
+
+				// Separate tween: the reveal runs once on its own clock, while this one
+				// is scrubbed by scroll position for the whole pass through the viewport.
+				// They touch different properties, so they do not fight over the element.
 				gsap.fromTo(
 					video,
 					{ yPercent: -3 },
@@ -77,8 +92,6 @@
 						ease: 'none',
 						scrollTrigger: {
 							trigger: frame,
-							// Span the whole pass through the viewport so the drift is
-							// gradual — roughly 45px across a full screen of scrolling.
 							start: 'top bottom',
 							end: 'bottom top',
 							scrub: true
@@ -96,7 +109,15 @@
 </script>
 
 <div class="frame" bind:this={frame}>
-	<video bind:this={video} {poster} aria-label={label} muted loop playsinline preload="metadata">
+	<video
+		bind:this={video}
+		{poster}
+		aria-label={label}
+		muted
+		loop
+		playsinline
+		preload="metadata"
+	>
 		<source src={av1} type="video/mp4; codecs=av01.0.08M.08" />
 		<source {src} type="video/mp4; codecs=avc1.640033" />
 	</video>

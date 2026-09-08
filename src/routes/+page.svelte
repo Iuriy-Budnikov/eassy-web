@@ -257,6 +257,12 @@
 		direction: ltr;
 	}
 
+	/* The one rule left on the page: the closing block is a different kind of
+	   thing from the three product sections, so it gets a line above it. */
+	.closing {
+		border-top: 1px solid var(--border);
+	}
+
 	.closing h2 {
 		max-width: 20ch;
 		margin-bottom: var(--space-40);
