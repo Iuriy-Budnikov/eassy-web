@@ -76,6 +76,9 @@
 			ctx = gsap.context(() => {
 				gsap.from(video, {
 					opacity: 0,
+					// A beat before the clip arrives, so the section's copy registers
+					// first rather than both landing on the same frame.
+					delay: 0.3,
 					duration: 0.9,
 					ease: 'power3.out',
 					scrollTrigger: { trigger: frame, start: 'top 88%', once: true }
