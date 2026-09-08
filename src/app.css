@@ -111,6 +111,10 @@
 	--btn-fg: var(--brand-ink);
 	--code-bg: #232328;
 
+	/* Lets `height: auto` participate in transitions — the FAQ accordion relies
+	   on it to animate open without measuring anything in script. */
+	interpolate-size: allow-keywords;
+
 	color-scheme: dark;
 }
 

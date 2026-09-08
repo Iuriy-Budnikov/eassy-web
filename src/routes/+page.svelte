@@ -6,6 +6,41 @@
 	import AppStoreBadge from '$lib/AppStoreBadge.svelte';
 	import { reveal } from '$lib/reveal';
 
+	const faqs = [
+		{
+			q: 'Do I need an Apple Watch?',
+			a: 'No. eassy works fully on iPhone. Apple Watch adds wrist-based workout tracking and keeps your session in sync.'
+		},
+		{
+			q: 'What is Training Readiness?',
+			a: 'A daily score that combines your recent training load, sleep, HRV, and resting heart rate to show how ready you are to train.'
+		},
+		{
+			q: 'What is Training Balance?',
+			a: 'It shows how your recent training load compares with the workload your body has adapted to — helping you see when you’re in a productive range or pushing too hard.'
+		},
+		{
+			q: 'Does eassy automatically increase my weights?',
+			a: 'Smart Progression can suggest small increases in weight or reps based on your previous workouts. You always stay in control.'
+		},
+		{
+			q: 'Can I use my own workout plans?',
+			a: 'Yes. Create your own templates, edit exercises, sets and reps, build supersets, and reuse them whenever you train.'
+		},
+		{
+			q: 'Does eassy work with Apple Health?',
+			a: 'Yes. eassy can import workouts and use permitted health data to power features like Readiness, heart-rate charts, and Training Balance.'
+		},
+		{
+			q: 'Do I need to create an account?',
+			a: 'No. There is no sign-up or account required.'
+		},
+		{
+			q: 'Where is my data stored?',
+			a: 'Your workout and health data stays on your device. eassy does not require cloud storage or an account to work.'
+		}
+	];
+
 	const jsonLd = {
 		'@context': 'https://schema.org',
 		'@type': 'SoftwareApplication',
@@ -123,7 +158,28 @@
 	</div>
 </section>
 
-<!-- 4. Closing -->
+<!-- 4. FAQ — native disclosure rows, so it opens without scripting and stays
+     keyboard-operable. -->
+<section class="faq">
+	<div class="inner" use:reveal>
+		<h2>Questions? Answers.</h2>
+
+		<ul class="faq-list">
+			{#each faqs as item (item.q)}
+				<li>
+					<details name="faq">
+						<summary>
+							<span>{item.q}</span>
+						</summary>
+						<p>{item.a}</p>
+					</details>
+				</li>
+			{/each}
+		</ul>
+	</div>
+</section>
+
+<!-- 5. Closing -->
 <section class="closing">
 	<div class="inner" use:reveal>
 		<h2>Your core workout data stays on your iPhone.</h2>
@@ -179,10 +235,11 @@
 		overflow-x: clip;
 	}
 
-	/* Only the sections carrying a clip get the wash — it is there to sit behind
-	   the phone, so the closing block stays on the flat page background. */
+	/* The wash the clips sit on, shared with the FAQ so the page keeps one
+	   surface treatment; the closing block stays on the flat page background. */
 	.hero,
-	.split {
+	.split,
+	.faq {
 		background-image: var(--fill-gradient);
 		/* A phone at this height needs real air above and below it, or the three
 		   clips read as one continuous column rather than three statements. */
@@ -328,15 +385,135 @@
 		direction: ltr;
 	}
 
-	/* The one rule left on the page: the closing block is a different kind of
-	   thing from the three product sections, so it gets a line above it. */
-	.closing {
-		border-top: 1px solid var(--border);
-	}
-
 	.closing h2 {
 		max-width: 20ch;
 		margin-bottom: var(--space-40);
+	}
+
+	/* FAQ — centred heading over a left-aligned column of disclosure rows. */
+
+	/* Tighter block than the product sections above — a reference list, not a
+	   statement, so it should not eat a whole screen. */
+	.faq {
+		padding-block: clamp(var(--space-56), 7vw, var(--space-96));
+	}
+
+	.faq .inner {
+		max-width: 42rem;
+	}
+
+	.faq h2 {
+		margin-bottom: clamp(var(--space-32), 4vw, var(--space-56));
+	}
+
+	.faq-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+	}
+
+	.faq-list li + li {
+		border-top: 1px solid rgb(255 255 255 / 7%);
+	}
+
+	summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-24);
+		padding-block: clamp(var(--space-20), 2vw, var(--space-24));
+		/* Pull the hit area out to the row edges so the whole strip highlights and
+		   responds to a click, not just the words. */
+		padding-inline: var(--space-12);
+		margin-inline: calc(var(--space-12) * -1);
+		border-radius: var(--radius-500);
+		cursor: pointer;
+		/* A double-click on an accordion header should open it twice, not select
+		   the question text. */
+		user-select: none;
+		transition: background-color 200ms ease, color 200ms ease;
+		font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+		line-height: 1.35;
+		letter-spacing: -0.005em;
+		font-weight: var(--weight-semibold);
+		color: var(--fg);
+		/* Hide the native triangle in both engines; the marker below replaces it. */
+		list-style: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary:hover {
+		background: rgb(255 255 255 / 4%);
+	}
+
+	summary:hover::after,
+	details[open] summary::after {
+		color: var(--fg);
+	}
+
+	summary:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	/* A plus that becomes a close cross when the row is open. Two bars rather
+	   than a glyph, so the rotation lands exactly on 45°. */
+	summary::after {
+		content: '';
+		flex: none;
+		width: 1rem;
+		height: 1rem;
+		background:
+			linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat,
+			linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat;
+		color: var(--fg-muted);
+		transition: transform 250ms ease, color 200ms ease;
+	}
+
+	details[open] summary::after {
+		transform: rotate(45deg);
+	}
+
+	/* Open/close animation. `::details-content` is the box the browser toggles,
+	   and `interpolate-size` is what lets height animate to and from `auto`
+	   without measuring anything in JS. Browsers without either simply snap open,
+	   which is the current behaviour, so this is purely additive. */
+	details::details-content {
+		height: 0;
+		overflow: hidden;
+		opacity: 0;
+		transition:
+			height 320ms ease,
+			opacity 220ms ease,
+			content-visibility 320ms;
+		transition-behavior: allow-discrete;
+	}
+
+	details[open]::details-content {
+		height: auto;
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		summary,
+		summary::after,
+		details::details-content {
+			transition: none;
+		}
+	}
+
+	details p {
+		margin: 0;
+		padding-bottom: clamp(var(--space-16), 2vw, var(--space-24));
+		max-width: 60ch;
+		font-size: clamp(1rem, 1.2vw, 1.0625rem);
+		line-height: 1.55;
+		letter-spacing: -0.01em;
+		color: var(--fg-muted);
 	}
 
 	/* Mobile: one column, media last, and the headline line breaks stop being
