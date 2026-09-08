@@ -19,12 +19,16 @@
 
 	const av1 = $derived(src.replace(/\.mp4$/, '.av1.mp4'));
 
+	let frame: HTMLDivElement;
 	let video: HTMLVideoElement;
+
+	/** Both effects below sit out entirely when the reader has asked for less motion. */
+	const still = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 	$effect(() => {
 		// The site is prerendered, so all of this is client-only by construction —
 		// but keep it inside the effect so it never runs during SSR.
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		if (still()) return;
 
 		const observer = new IntersectionObserver(
 			([entry]) => {
@@ -42,9 +46,56 @@
 		observer.observe(video);
 		return () => observer.disconnect();
 	});
+
+	/**
+	 * Scroll parallax. GSAP is loaded on demand rather than bundled — it is dead
+	 * weight for anyone who never scrolls past the hero, and this page already
+	 * treats heavy third-party code that way (see `analytics.ts`).
+	 */
+	$effect(() => {
+		if (still()) return;
+
+		let cancelled = false;
+		let ctx: { revert: () => void } | undefined;
+
+		void (async () => {
+			const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+				import('gsap'),
+				import('gsap/ScrollTrigger')
+			]);
+			// The effect can be torn down while those imports are still in flight.
+			if (cancelled) return;
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			ctx = gsap.context(() => {
+				gsap.fromTo(
+					video,
+					{ yPercent: -3 },
+					{
+						yPercent: 3,
+						ease: 'none',
+						scrollTrigger: {
+							trigger: frame,
+							// Span the whole pass through the viewport so the drift is
+							// gradual — roughly 45px across a full screen of scrolling.
+							start: 'top bottom',
+							end: 'bottom top',
+							scrub: true
+						}
+					}
+				);
+			}, frame);
+		})();
+
+		return () => {
+			cancelled = true;
+			ctx?.revert();
+		};
+	});
 </script>
 
-<div class="frame">
+<div class="frame" bind:this={frame}>
 	<video bind:this={video} {poster} aria-label={label} muted loop playsinline preload="metadata">
 		<source src={av1} type="video/mp4; codecs=av01.0.08M.08" />
 		<source {src} type="video/mp4; codecs=avc1.640033" />
@@ -75,6 +126,10 @@
 		height: auto;
 		/* Matches the encoded output, so nothing shifts before metadata lands. */
 		aspect-ratio: 912 / 1892;
+		/* Before the poster paints the box is empty, and screening an empty (white)
+		   box flashes a white rectangle. Black is the identity colour for `screen`,
+		   so this makes the pre-load state indistinguishable from the page. */
+		background: #000;
 		mix-blend-mode: screen;
 	}
 </style>

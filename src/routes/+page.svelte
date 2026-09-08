@@ -171,8 +171,8 @@
 		border-radius: 22%;
 	}
 
-	/* One message per screen: each section gets its own generous block, with a
-	   hairline between them so the media blocks read as separate statements. */
+	/* One message per screen: each section gets its own generous block, and the
+	   spacing alone is what separates them. */
 
 	section {
 		position: relative;
@@ -181,10 +181,6 @@
 		   screens. `clip` on one axis leaves the other visible; `hidden` would
 		   force the other axis to scroll. */
 		overflow-x: clip;
-	}
-
-	section + section {
-		border-top: 1px solid var(--border);
 	}
 
 	.inner {
