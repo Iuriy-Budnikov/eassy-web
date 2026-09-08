@@ -48,9 +48,9 @@
 	});
 
 	/**
-	 * Reveal and parallax, both on GSAP. It is loaded on demand rather than
-	 * bundled — dead weight for anyone who never scrolls past the hero, and this
-	 * page already treats heavy third-party code that way (see `analytics.ts`).
+	 * The reveal, on GSAP. It is loaded on demand rather than bundled — dead
+	 * weight for anyone who never scrolls past the hero, and this page already
+	 * treats heavy third-party code that way (see `analytics.ts`).
 	 *
 	 * Note that the opacity floor is set by GSAP rather than in CSS. Starting the
 	 * clip hidden in the stylesheet would leave it permanently invisible on any
@@ -80,24 +80,6 @@
 					ease: 'power3.out',
 					scrollTrigger: { trigger: frame, start: 'top 88%', once: true }
 				});
-
-				// Separate tween: the reveal runs once on its own clock, while this one
-				// is scrubbed by scroll position for the whole pass through the viewport.
-				// They touch different properties, so they do not fight over the element.
-				gsap.fromTo(
-					video,
-					{ yPercent: -3 },
-					{
-						yPercent: 3,
-						ease: 'none',
-						scrollTrigger: {
-							trigger: frame,
-							start: 'top bottom',
-							end: 'bottom top',
-							scrub: true
-						}
-					}
-				);
 			}, frame);
 		})();
 
