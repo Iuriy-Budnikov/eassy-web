@@ -15,16 +15,23 @@
 	 * being both smaller and measurably higher quality on this kind of flat UI
 	 * footage. Browsers without AV1 fall through to the H.264 on their own.
 	 */
+
 	/**
 	 * `maxWidth` caps how wide the phone renders. The default suits a clip sat in
 	 * one half of a two-column section; the hero, which is centred and has the
 	 * full page width to itself, passes a larger value.
+	 *
+	 * Both are capped against the viewport height as well as a fixed width. The
+	 * hero needs that so the first screen fits, and the section clips carry the
+	 * same term so every phone on the page renders identically once the columns
+	 * collapse on mobile — otherwise a short screen shows a narrower hero than
+	 * the sections below it.
 	 */
 	let {
 		src,
 		poster,
 		label,
-		maxWidth = '25rem'
+		maxWidth = 'min(25rem, 42svh)'
 	}: { src: string; poster: string; label: string; maxWidth?: string } = $props();
 
 	const av1 = $derived(src.replace(/\.mp4$/, '.av1.mp4'));
