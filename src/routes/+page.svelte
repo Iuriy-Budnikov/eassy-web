@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { APP_STORE_URL } from '$lib';
-	import icon from '$lib/assets/eassy-icon.svg';
 	import Footer from '$lib/Footer.svelte';
+	import SiteHeader from '$lib/SiteHeader.svelte';
 	import PhoneVideo from '$lib/PhoneVideo.svelte';
 	import AppStoreBadge from '$lib/AppStoreBadge.svelte';
 	import { reveal } from '$lib/reveal';
@@ -84,14 +84,7 @@
 </svelte:head>
 
 <div class="first-screen">
-	<header class="topbar">
-		<div class="topbar-inner">
-			<a class="wordmark" href="/">
-				<img src={icon} alt="" width="28" height="28" />
-				<span>eassy</span>
-			</a>
-		</div>
-	</header>
+	<SiteHeader />
 
 	<!-- 1. Hero -->
 	<section class="hero">
@@ -191,38 +184,6 @@
 <Footer />
 
 <style>
-	/* Header — just the wordmark; the calls to action live in the page. */
-
-	/* Scrolls away with the page — nothing in it needs to stay reachable, and a
-	   translucent bar over the clips would tint them. */
-	.topbar {
-		background: var(--fill);
-	}
-
-	.topbar-inner {
-		display: flex;
-		align-items: center;
-		gap: var(--space-16);
-		max-width: var(--width-page);
-		margin-inline: auto;
-		padding: var(--space-12) var(--space-16);
-	}
-
-	.wordmark {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-8);
-		font-size: var(--font-size-300);
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-300);
-		color: var(--fg);
-		text-decoration: none;
-	}
-
-	.wordmark img {
-		border-radius: 22%;
-	}
-
 	/* One message per screen: each section gets its own generous block, and the
 	   spacing alone is what separates them. */
 
