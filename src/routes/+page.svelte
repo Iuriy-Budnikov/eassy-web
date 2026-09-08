@@ -177,10 +177,9 @@
 	section {
 		position: relative;
 		padding: clamp(var(--space-80), 12vw, var(--space-128)) var(--space-16);
-		/* The glow behind each phone deliberately bleeds past its frame; on narrow
-		   screens that bleed is wide enough to pan the page sideways. Clip it here
-		   rather than shrinking the glow — `clip` on one axis leaves the other
-		   visible, which `hidden` would not. */
+		/* Guard against decorative bleed panning the page sideways on narrow
+		   screens. `clip` on one axis leaves the other visible; `hidden` would
+		   force the other axis to scroll. */
 		overflow-x: clip;
 	}
 

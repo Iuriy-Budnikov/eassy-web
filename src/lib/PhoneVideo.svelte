@@ -54,28 +54,19 @@
 		margin-inline: auto;
 	}
 
-	/* The halo the `screen` blend reveals through the clip's black surround. */
-	.frame::before {
-		content: '';
-		position: absolute;
-		inset: -12% -22%;
-		border-radius: 50%;
-		background: radial-gradient(
-			ellipse at center,
-			color-mix(in srgb, var(--accent) 16%, transparent),
-			transparent 68%
-		);
-		filter: blur(2.5rem);
-		pointer-events: none;
-	}
-
+	/* `screen` against the page background is what hides the clip's black
+	   surround: screen(0, bg) is exactly bg, so the rectangle disappears without
+	   needing to match the device silhouette — which a border-radius could not do
+	   anyway, since the render's side buttons run right to the frame edge.
+	   Nothing may sit behind the video: whatever is back there gets *added* into
+	   the phone's own pixels. A lime glow here read as an olive cast across the
+	   whole screen. The only backdrop is the page, and it lifts blacks by ~5%. */
 	video {
-		position: relative;
 		display: block;
 		width: 100%;
 		height: auto;
 		/* Matches the encoded output, so nothing shifts before metadata lands. */
-		aspect-ratio: 694 / 1440;
+		aspect-ratio: 912 / 1892;
 		mix-blend-mode: screen;
 	}
 </style>
