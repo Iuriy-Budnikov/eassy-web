@@ -15,7 +15,17 @@
 	 * being both smaller and measurably higher quality on this kind of flat UI
 	 * footage. Browsers without AV1 fall through to the H.264 on their own.
 	 */
-	let { src, poster, label }: { src: string; poster: string; label: string } = $props();
+	/**
+	 * `maxWidth` caps how wide the phone renders. The default suits a clip sat in
+	 * one half of a two-column section; the hero, which is centred and has the
+	 * full page width to itself, passes a larger value.
+	 */
+	let {
+		src,
+		poster,
+		label,
+		maxWidth = '25rem'
+	}: { src: string; poster: string; label: string; maxWidth?: string } = $props();
 
 	const av1 = $derived(src.replace(/\.mp4$/, '.av1.mp4'));
 
@@ -48,52 +58,60 @@
 	});
 
 	/**
-	 * The reveal, on GSAP. It is loaded on demand rather than bundled — dead
-	 * weight for anyone who never scrolls past the hero, and this page already
-	 * treats heavy third-party code that way (see `analytics.ts`).
+	 * The reveal, on GSAP — but scheduled by an IntersectionObserver rather than
+	 * ScrollTrigger. ScrollTrigger has to measure every trigger against a shared
+	 * scroll position, and with several of them being created asynchronously
+	 * (each clip, each copy block) an element already past its start point when
+	 * its trigger is built could be left sitting at the `from` state forever.
+	 * An observer answers "is this on screen" per element and needs no refresh.
 	 *
-	 * Note that the opacity floor is set by GSAP rather than in CSS. Starting the
-	 * clip hidden in the stylesheet would leave it permanently invisible on any
-	 * page where this import fails, so the markup's default stays opaque and only
-	 * a page that actually has GSAP dims it in order to fade it back up.
+	 * Note the opacity floor is set by GSAP, never in CSS: starting the clip
+	 * hidden in the stylesheet would leave it permanently invisible on any page
+	 * where this import fails, so the markup default stays opaque and only a page
+	 * that actually has GSAP dims it in order to fade it back up.
 	 */
 	$effect(() => {
 		if (still()) return;
 
 		let cancelled = false;
-		let ctx: { revert: () => void } | undefined;
+		let observer: IntersectionObserver | undefined;
 
 		void (async () => {
-			const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-				import('gsap'),
-				import('gsap/ScrollTrigger')
-			]);
-			// The effect can be torn down while those imports are still in flight.
+			const { gsap } = await import('gsap');
+			// The effect can be torn down while that import is still in flight.
 			if (cancelled) return;
 
-			gsap.registerPlugin(ScrollTrigger);
+			gsap.set(video, { opacity: 0 });
 
-			ctx = gsap.context(() => {
-				gsap.from(video, {
-					opacity: 0,
-					// A beat before the clip arrives, so the section's copy registers
-					// first rather than both landing on the same frame.
-					delay: 0.3,
-					duration: 0.9,
-					ease: 'power3.out',
-					scrollTrigger: { trigger: frame, start: 'top 88%', once: true }
-				});
-			}, frame);
+			observer = new IntersectionObserver(
+				([entry]) => {
+					if (!entry.isIntersecting) return;
+					observer?.disconnect();
+					gsap.to(video, {
+						opacity: 1,
+						// A beat before the clip arrives, so the section's copy registers
+						// first rather than both landing on the same frame.
+						delay: 0.3,
+						duration: 0.9,
+						ease: 'power3.out'
+					});
+				},
+				{ threshold: 0.01 }
+			);
+
+			observer.observe(video);
 		})();
 
 		return () => {
 			cancelled = true;
-			ctx?.revert();
+			observer?.disconnect();
+			// Never leave the clip stranded at the hidden state.
+			video.style.opacity = '';
 		};
 	});
 </script>
 
-<div class="frame" bind:this={frame}>
+<div class="frame" bind:this={frame} style:max-width={maxWidth}>
 	<video
 		bind:this={video}
 		{poster}
@@ -109,13 +127,12 @@
 </div>
 
 <style>
-	/* Judge this by the height it lands on, not the width — at a 694/1440 aspect
-	   every rem of width costs roughly two of height. 22rem fills its column and
-	   still leaves the section a little shorter than a tall desktop viewport. */
+	/* Judge this by the height it lands on, not the width — at a 912/1892 aspect
+	   every rem of width costs roughly two of height, so the 25rem default is
+	   already an 830px-tall block. The cap itself comes from `maxWidth`. */
 	.frame {
 		position: relative;
 		width: 100%;
-		max-width: 22rem;
 		margin-inline: auto;
 	}
 
