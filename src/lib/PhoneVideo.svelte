@@ -72,6 +72,14 @@
 	 * its trigger is built could be left sitting at the `from` state forever.
 	 * An observer answers "is this on screen" per element and needs no refresh.
 	 *
+	 * The fade waits for the clip to actually hold a frame. Safari swaps the
+	 * poster out for the video the moment playback starts, and if no frame has
+	 * decoded yet the element paints its own background — which `screen` blending
+	 * turns into the page colour, so the phone vanishes for a beat and reads as a
+	 * blink. Fading in only once there is something to show removes the gap
+	 * entirely. A timeout still reveals it if the media never becomes ready, so a
+	 * refused autoplay shows the poster rather than nothing at all.
+	 *
 	 * Note the opacity floor is set by GSAP, never in CSS: starting the clip
 	 * hidden in the stylesheet would leave it permanently invisible on any page
 	 * where this import fails, so the markup default stays opaque and only a page
@@ -82,6 +90,7 @@
 
 		let cancelled = false;
 		let observer: IntersectionObserver | undefined;
+		let safety: ReturnType<typeof setTimeout>;
 
 		void (async () => {
 			const { gsap } = await import('gsap');
@@ -90,20 +99,42 @@
 
 			gsap.set(video, { opacity: 0 });
 
+			let revealed = false;
+
+			const show = () => {
+				if (revealed) return;
+				revealed = true;
+				clearTimeout(safety);
+				video.removeEventListener('playing', show);
+				video.removeEventListener('loadeddata', show);
+				gsap.to(video, {
+					opacity: 1,
+					// A beat before the clip arrives, so the section's copy registers
+					// first rather than both landing on the same frame.
+					delay: 0.25,
+					duration: 1.1,
+					ease: 'power2.out'
+				});
+			};
+
 			observer = new IntersectionObserver(
 				([entry]) => {
-					if (!entry.isIntersecting) return;
+					if (!entry.isIntersecting || revealed) return;
 					observer?.disconnect();
-					gsap.to(video, {
-						opacity: 1,
-						// A beat before the clip arrives, so the section's copy registers
-						// first rather than both landing on the same frame.
-						delay: 0.25,
-						duration: 1.1,
-						ease: 'power2.out'
-					});
+
+					// HAVE_CURRENT_DATA or better means a frame is already on screen.
+					if (video.readyState >= 2) {
+						show();
+						return;
+					}
+
+					video.addEventListener('playing', show, { once: true });
+					video.addEventListener('loadeddata', show, { once: true });
+					safety = setTimeout(show, 2500);
 				},
-				{ threshold: 0.01 }
+				// Matched to the playback observer above, so the fade cannot start
+				// before the clip has been asked to play.
+				{ threshold: 0.25 }
 			);
 
 			observer.observe(video);
@@ -112,6 +143,7 @@
 		return () => {
 			cancelled = true;
 			observer?.disconnect();
+			clearTimeout(safety);
 			// Never leave the clip stranded at the hidden state.
 			video.style.opacity = '';
 		};
