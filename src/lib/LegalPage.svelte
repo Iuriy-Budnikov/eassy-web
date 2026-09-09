@@ -101,7 +101,7 @@
 		color: var(--fg-muted);
 		text-decoration: underline;
 		text-underline-offset: 0.15em;
-		transition: color 200ms ease;
+		transition: color var(--duration-fast) var(--ease-out);
 	}
 
 	main :global(a:hover) {

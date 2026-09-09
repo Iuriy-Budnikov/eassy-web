@@ -47,7 +47,9 @@
 		   does not inherit the page's heading tracking. */
 		font-family: var(--font-sans);
 		white-space: nowrap;
-		transition: background-color 250ms, border-color 250ms;
+		transition:
+			background-color var(--duration-fast) var(--ease-out),
+			border-color var(--duration-fast) var(--ease-out);
 	}
 
 	.badge:hover,

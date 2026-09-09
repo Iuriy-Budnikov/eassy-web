@@ -74,9 +74,9 @@
 		font-weight: var(--weight-medium);
 		cursor: pointer;
 		transition:
-			background-color 120ms ease,
-			border-color 120ms ease,
-			color 120ms ease;
+			background-color var(--duration-fast) var(--ease-out),
+			border-color var(--duration-fast) var(--ease-out),
+			color var(--duration-fast) var(--ease-out);
 	}
 
 	.decline {

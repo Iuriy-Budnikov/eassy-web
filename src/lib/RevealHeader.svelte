@@ -7,7 +7,9 @@
 	 * the local nav on apple.com/iphone-17-pro. Measured off that page: a centred
 	 * capsule 1024px wide and 52px tall, 10px down from the top, 18px corner
 	 * radius, rgba(18,18,18,.8) behind a 20px backdrop blur, a 1px rgb(40,40,40)
-	 * hairline, sliding in over 230ms. Its buttons are 28px pills at 12px type.
+	 * hairline. The slide uses this site's shared motion tokens rather than
+	 * Apple's 230ms, so it settles in the same accent as everything else. Its
+	 * buttons are 28px pills at 12px type.
 	 *
 	 * `watch` is the element whose passing triggers it — the hero screen. An
 	 * IntersectionObserver on that element answers the question directly, so no
@@ -57,7 +59,7 @@
 		padding: 0.625rem var(--space-16) 0.125rem;
 		pointer-events: none;
 		transform: translateY(-150%);
-		transition: transform 230ms ease;
+		transition: transform var(--duration-base) var(--ease-out);
 	}
 
 	.localnav.revealed {
@@ -106,7 +108,7 @@
 		line-height: 1;
 		white-space: nowrap;
 		text-decoration: none;
-		transition: background-color 200ms ease;
+		transition: background-color var(--duration-fast) var(--ease-out);
 	}
 
 	.cta:hover,

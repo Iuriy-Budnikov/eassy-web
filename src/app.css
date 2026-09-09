@@ -111,6 +111,14 @@
 	--btn-fg: var(--brand-ink);
 	--code-bg: #232328;
 
+	/* Motion — one curve and three durations for the whole site, so nothing moves
+	   in a different accent from anything else. The curve is a long, soft tail:
+	   quick to commit, slow to settle. */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--duration-fast: 260ms;
+	--duration-base: 420ms;
+	--duration-slow: 700ms;
+
 	/* Lets `height: auto` participate in transitions — the FAQ accordion relies
 	   on it to animate open without measuring anything in script. */
 	interpolate-size: allow-keywords;

@@ -3,12 +3,94 @@
 	import Footer from '$lib/Footer.svelte';
 	import SiteHeader from '$lib/SiteHeader.svelte';
 	import RevealHeader from '$lib/RevealHeader.svelte';
+	import Gallery from '$lib/Gallery.svelte';
 	import PhoneVideo from '$lib/PhoneVideo.svelte';
 	import AppStoreBadge from '$lib/AppStoreBadge.svelte';
 	import { reveal } from '$lib/reveal';
 
 	/** Passed to <RevealHeader />, which watches it to know when to slide in. */
 	let firstScreen = $state<HTMLDivElement | undefined>(undefined);
+
+	/**
+	 * Cards for the two galleries. Every line is condensed from copy already
+	 * published on this site — the FAQ below, and /support — rather than written
+	 * fresh, so the pages never drift apart.
+	 */
+	const features = [
+		{
+			title: 'Training Readiness',
+			body: 'A daily score that shows how ready you are to train, based on recovery and recent training.',
+			key: 'how ready you are to train'
+		},
+		{
+			title: 'Training Balance',
+			body: 'See how your workload compares with what your body has adapted to.',
+			key: 'what your body has adapted to'
+		},
+		{
+			title: 'Smart Progression',
+			body: 'Get small, sensible increases in weight and reps based on your actual performance.',
+			key: 'based on your actual performance'
+		},
+		{
+			title: 'Smart Templates',
+			body: 'Find the right workout for today, shaped by recovery, goals, experience, and recent sessions.',
+			key: 'the right workout for today'
+		},
+		{
+			title: 'Workout Tracking',
+			body: 'Log sets, reps, weight, and rest without breaking the flow of your workout.',
+			key: 'without breaking the flow'
+		},
+		{
+			title: 'Apple Watch',
+			body: 'Track your workout from your wrist and keep everything in sync with iPhone.',
+			key: 'from your wrist'
+		},
+		{
+			title: 'Workout Insights',
+			body: 'Review volume, heart rate, effort, and progress after every session.',
+			key: 'volume, heart rate, effort, and progress'
+		}
+	];
+
+	const practical = [
+		{
+			title: 'Your Training Balance',
+			body: 'See where your current workload sits compared with what your body has adapted to.',
+			key: 'what your body has adapted to'
+		},
+		{
+			title: 'Optimal Range',
+			body: 'Know when your training load is in the sweet spot for steady progress.',
+			key: 'in the sweet spot'
+		},
+		{
+			title: 'Too Much, Too Fast',
+			body: 'Spot when your recent workload is rising faster than your baseline.',
+			key: 'rising faster than your baseline'
+		},
+		{
+			title: 'Falling Behind',
+			body: 'See when your training load is dropping below your usual level.',
+			key: 'dropping below your usual level'
+		},
+		{
+			title: 'See the Trend',
+			body: 'Follow how your balance changes over time, not just today’s number.',
+			key: 'changes over time'
+		},
+		{
+			title: 'Understand the Range',
+			body: 'See how much time you spend Optimal, Detraining, or at higher risk.',
+			key: 'Optimal, Detraining, or at higher risk'
+		},
+		{
+			title: 'Train With Context',
+			body: 'Use Training Balance to understand when to push, hold, or recover.',
+			key: 'when to push, hold, or recover'
+		}
+	];
 
 	const faqs = [
 		{
@@ -138,7 +220,10 @@
 	</div>
 </section>
 
-<!-- 3. Training Balance — media on the left, mirroring the section above. -->
+<!-- 3. Gallery -->
+<Gallery title="Inside the app." cards={features} />
+
+<!-- 4. Training Balance — media on the left, mirroring the section above. -->
 <section class="split">
 	<div class="inner two-col reversed">
 		<div class="copy" use:reveal>
@@ -157,7 +242,10 @@
 	</div>
 </section>
 
-<!-- 4. FAQ — native disclosure rows, so it opens without scripting and stays
+<!-- 5. Gallery -->
+<Gallery title="Training Balance, closer up." cards={practical} />
+
+<!-- 6. FAQ — native disclosure rows, so it opens without scripting and stays
      keyboard-operable. -->
 <section class="faq">
 	<div class="inner" use:reveal>
@@ -178,7 +266,7 @@
 	</div>
 </section>
 
-<!-- 5. Closing -->
+<!-- 7. Closing -->
 <section class="closing">
 	<div class="inner" use:reveal>
 		<h2>Your core workout data stays on your iPhone.</h2>
@@ -399,7 +487,9 @@
 		/* A double-click on an accordion header should open it twice, not select
 		   the question text. */
 		user-select: none;
-		transition: background-color 200ms ease, color 200ms ease;
+		transition:
+			background-color var(--duration-fast) var(--ease-out),
+			color var(--duration-fast) var(--ease-out);
 		font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
 		line-height: 1.35;
 		letter-spacing: -0.005em;
@@ -438,7 +528,9 @@
 			linear-gradient(currentColor, currentColor) center / 100% 1.5px no-repeat,
 			linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat;
 		color: var(--fg-muted);
-		transition: transform 250ms ease, color 200ms ease;
+		transition:
+			transform var(--duration-base) var(--ease-out),
+			color var(--duration-fast) var(--ease-out);
 	}
 
 	details[open] summary::after {
@@ -454,9 +546,9 @@
 		overflow: hidden;
 		opacity: 0;
 		transition:
-			height 320ms ease,
-			opacity 220ms ease,
-			content-visibility 320ms;
+			height var(--duration-base) var(--ease-out),
+			opacity 320ms var(--ease-out),
+			content-visibility var(--duration-base);
 		transition-behavior: allow-discrete;
 	}
 
@@ -482,6 +574,8 @@
 		letter-spacing: -0.01em;
 		color: var(--fg-muted);
 	}
+
+
 
 	/* Mobile: one column, media last, and the headline line breaks stop being
 	   deliberate once the measure is this narrow. */

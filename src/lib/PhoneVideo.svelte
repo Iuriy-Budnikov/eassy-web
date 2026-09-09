@@ -98,9 +98,9 @@
 						opacity: 1,
 						// A beat before the clip arrives, so the section's copy registers
 						// first rather than both landing on the same frame.
-						delay: 0.3,
-						duration: 0.9,
-						ease: 'power3.out'
+						delay: 0.25,
+						duration: 1.1,
+						ease: 'power2.out'
 					});
 				},
 				{ threshold: 0.01 }

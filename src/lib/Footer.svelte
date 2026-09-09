@@ -72,7 +72,9 @@
 		text-decoration: underline;
 		text-decoration-color: transparent;
 		text-underline-offset: 0.15em;
-		transition: color 120ms ease, text-decoration-color 120ms ease;
+		transition:
+			color var(--duration-fast) var(--ease-out),
+			text-decoration-color var(--duration-fast) var(--ease-out);
 	}
 
 	/* The cookie control is an action, not a destination, so it is a button —

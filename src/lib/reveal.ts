@@ -29,7 +29,7 @@ export function reveal(node: HTMLElement) {
 		// The node can be torn down while that import is still in flight.
 		if (cancelled) return;
 
-		gsap.set(items, { opacity: 0, y: 14 });
+		gsap.set(items, { opacity: 0, y: 18 });
 
 		observer = new IntersectionObserver(
 			([entry]) => {
@@ -38,11 +38,14 @@ export function reveal(node: HTMLElement) {
 				gsap.to(items, {
 					opacity: 1,
 					y: 0,
-					duration: 0.7,
-					ease: 'power3.out',
+					// Long and gently decelerating rather than snappy: power2 has a
+					// softer tail than power3, and the extra duration keeps the whole
+					// stagger reading as one settling movement.
+					duration: 0.9,
+					ease: 'power2.out',
 					// Eyebrow, then headline, then body, then the button — close enough
 					// together to read as one move rather than four separate ones.
-					stagger: 0.09
+					stagger: 0.1
 				});
 			},
 			{ threshold: 0.15 }
