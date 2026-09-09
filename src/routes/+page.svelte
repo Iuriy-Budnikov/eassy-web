@@ -19,36 +19,43 @@
 	const features = [
 		{
 			title: 'Training Readiness',
+			image: '/media/cards/readiness.jpg',
 			body: 'A daily score that shows how ready you are to train, based on recovery and recent training.',
 			key: 'how ready you are to train'
 		},
 		{
 			title: 'Training Balance',
+			image: '/media/cards/balance.jpg',
 			body: 'See how your workload compares with what your body has adapted to.',
 			key: 'what your body has adapted to'
 		},
 		{
 			title: 'Smart Progression',
+			image: '/media/cards/progression.jpg',
 			body: 'Get small, sensible increases in weight and reps based on your actual performance.',
 			key: 'based on your actual performance'
 		},
 		{
 			title: 'Smart Templates',
+			image: '/media/cards/templates.jpg',
 			body: 'Find the right workout for today, shaped by recovery, goals, experience, and recent sessions.',
 			key: 'the right workout for today'
 		},
 		{
 			title: 'Workout Tracking',
+			image: '/media/cards/tracking.jpg',
 			body: 'Log sets, reps, weight, and rest without breaking the flow of your workout.',
 			key: 'without breaking the flow'
 		},
 		{
 			title: 'Apple Watch',
+			image: '/media/cards/watch.jpg',
 			body: 'Track your workout from your wrist and keep everything in sync with iPhone.',
 			key: 'from your wrist'
 		},
 		{
 			title: 'Workout Insights',
+			image: '/media/cards/insights.jpg',
 			body: 'Review volume, heart rate, effort, and progress after every session.',
 			key: 'volume, heart rate, effort, and progress'
 		}
@@ -57,36 +64,43 @@
 	const practical = [
 		{
 			title: 'Your Training Balance',
+			image: '/media/cards/tb-your.jpg',
 			body: 'See where your current workload sits compared with what your body has adapted to.',
 			key: 'what your body has adapted to'
 		},
 		{
 			title: 'Optimal Range',
+			image: '/media/cards/tb-optimal.jpg',
 			body: 'Know when your training load is in the sweet spot for steady progress.',
 			key: 'in the sweet spot'
 		},
 		{
 			title: 'Too Much, Too Fast',
+			image: '/media/cards/tb-toomuch.jpg',
 			body: 'Spot when your recent workload is rising faster than your baseline.',
 			key: 'rising faster than your baseline'
 		},
 		{
 			title: 'Falling Behind',
+			image: '/media/cards/tb-behind.jpg',
 			body: 'See when your training load is dropping below your usual level.',
 			key: 'dropping below your usual level'
 		},
 		{
 			title: 'See the Trend',
+			image: '/media/cards/tb-trend.jpg',
 			body: 'Follow how your balance changes over time, not just today’s number.',
 			key: 'changes over time'
 		},
 		{
 			title: 'Understand the Range',
+			image: '/media/cards/tb-range.jpg',
 			body: 'See how much time you spend Optimal, Detraining, or at higher risk.',
 			key: 'Optimal, Detraining, or at higher risk'
 		},
 		{
 			title: 'Train With Context',
+			image: '/media/cards/tb-context.jpg',
 			body: 'Use Training Balance to understand when to push, hold, or recover.',
 			key: 'when to push, hold, or recover'
 		}

@@ -10,7 +10,7 @@
 	 * Each instance owns its own rail element and edge state, so a page can carry
 	 * several galleries without them fighting over one scroll position.
 	 */
-	type Card = { title: string; body: string; key?: string };
+	type Card = { title: string; body: string; key?: string; image?: string };
 
 	let { title, cards }: { title: string; cards: Card[] } = $props();
 
@@ -108,7 +108,16 @@
 	<ul class="cards" bind:this={rail} onscroll={updateRailEdges} use:reveal>
 		{#each cards as card (card.title)}
 			<li>
-				<div class="tile"><span>{card.title}</span></div>
+				<div class="tile">
+					{#if card.image}
+						<img src={card.image} alt="" loading="lazy" />
+					{:else}
+						<span>{card.title}</span>
+					{/if}
+				</div>
+
+				<h3 class="card-title">{card.title}</h3>
+
 				<p class="card-body">
 					{#each segments(card) as part (part.text)}{#if part.lit}<span class="key"
 								>{part.text}</span
@@ -233,23 +242,45 @@
 		align-items: flex-end;
 		box-sizing: border-box;
 		height: min(28.125rem, 94vw);
-		padding: var(--space-32);
 		border-radius: 1.75rem;
 		background: linear-gradient(160deg, #1c1c1f, #0d0d0f 70%);
 		overflow: hidden;
 	}
 
+	.tile img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		/* Anchored to the top so the crop keeps the screen's own header in frame
+		   rather than centring on whatever happens to be mid-screen. */
+		object-fit: cover;
+		object-position: top;
+	}
+
+	/* Fallback for a card with no image yet. */
 	.tile span {
+		padding: var(--space-32);
 		font-size: clamp(1.75rem, 2.4vw, 2.5rem);
 		line-height: 1.1;
 		letter-spacing: -0.005em;
 		font-weight: var(--weight-semibold);
 	}
 
+	/* Caption follows Apple's: the card's name on its own line in white, then the
+	   description muted beneath it. */
+	.card-title {
+		margin: 0.85rem 0 0;
+		padding-inline: 0.9375rem;
+		font-size: 1.0625rem;
+		line-height: 1.47;
+		font-weight: var(--weight-semibold);
+		color: var(--fg);
+	}
+
 	/* Muted by default, with only the key phrase lifted to full strength — the
 	   eye lands on the point of the card before reading the whole line. */
 	.card-body {
-		margin: 0.85rem 0 0;
+		margin: 0;
 		/* Apple insets the caption 15px from each tile edge rather than running it
 		   flush, which keeps the text off the card's corner radius. */
 		padding-inline: 0.9375rem;
