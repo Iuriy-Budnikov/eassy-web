@@ -2,9 +2,13 @@
 	import { APP_STORE_URL } from '$lib';
 	import Footer from '$lib/Footer.svelte';
 	import SiteHeader from '$lib/SiteHeader.svelte';
+	import RevealHeader from '$lib/RevealHeader.svelte';
 	import PhoneVideo from '$lib/PhoneVideo.svelte';
 	import AppStoreBadge from '$lib/AppStoreBadge.svelte';
 	import { reveal } from '$lib/reveal';
+
+	/** Passed to <RevealHeader />, which watches it to know when to slide in. */
+	let firstScreen = $state<HTMLDivElement | undefined>(undefined);
 
 	const faqs = [
 		{
@@ -83,7 +87,9 @@
 	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>`}
 </svelte:head>
 
-<div class="first-screen">
+<RevealHeader watch={firstScreen} />
+
+<div class="first-screen" bind:this={firstScreen}>
 	<SiteHeader />
 
 	<!-- 1. Hero -->
