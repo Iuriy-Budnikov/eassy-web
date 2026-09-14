@@ -31,7 +31,7 @@
 		].filter((part) => part.text);
 	}
 
-	let rail: HTMLUListElement | undefined = $state();
+	let rail: HTMLDivElement | undefined = $state();
 	let atStart = $state(true);
 	let atEnd = $state(false);
 
@@ -43,10 +43,11 @@
 
 	/** Moves by exactly one card pitch, so a click lands where the snap would. */
 	function slide(direction: 1 | -1) {
-		const card = rail?.firstElementChild;
-		if (!rail || !card) return;
+		const list = rail?.firstElementChild;
+		const card = list?.firstElementChild;
+		if (!rail || !list || !card) return;
 
-		const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+		const gap = parseFloat(getComputedStyle(list).columnGap) || 0;
 		rail.scrollBy({
 			left: direction * (card.getBoundingClientRect().width + gap),
 			behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
@@ -105,27 +106,29 @@
 		</div>
 	</div>
 
-	<ul class="cards" bind:this={rail} onscroll={updateRailEdges} use:reveal>
-		{#each cards as card (card.title)}
-			<li>
-				<div class="tile">
-					{#if card.image}
-						<img src={card.image} alt="" loading="lazy" />
-					{:else}
-						<span>{card.title}</span>
-					{/if}
-				</div>
+	<div class="rail" bind:this={rail} onscroll={updateRailEdges}>
+		<ul class="cards" use:reveal>
+			{#each cards as card (card.title)}
+				<li>
+					<div class="tile">
+						{#if card.image}
+							<img src={card.image} alt="" loading="lazy" />
+						{:else}
+							<span>{card.title}</span>
+						{/if}
+					</div>
 
-				<h3 class="card-title">{card.title}</h3>
+					<h3 class="card-title">{card.title}</h3>
 
-				<p class="card-body">
-					{#each segments(card) as part (part.text)}{#if part.lit}<span class="key"
-								>{part.text}</span
-							>{:else}{part.text}{/if}{/each}
-				</p>
-			</li>
-		{/each}
-	</ul>
+					<p class="card-body">
+						{#each segments(card) as part (part.text)}{#if part.lit}<span class="key"
+									>{part.text}</span
+								>{:else}{part.text}{/if}{/each}
+					</p>
+				</li>
+			{/each}
+		</ul>
+	</div>
 </section>
 
 <style>
@@ -208,17 +211,16 @@
 		cursor: default;
 	}
 
-	.cards {
-		display: flex;
-		/* Cards size to their own content. Stretching them to a shared height
-		   squeezes a three-line caption into the two-line box the shorter cards
-		   set, and `overflow-x: auto` forces `overflow-y: auto`, so the overflow
-		   is clipped rather than merely spilling. */
-		align-items: flex-start;
-		gap: 1.25rem;
-		list-style: none;
-		margin: 0;
-		padding-inline: var(--gutter);
+	/* The scroller and the list are two elements on purpose. `overflow-x: auto`
+	   makes a box scrollable on *both* axes — there is no way to opt one axis out,
+	   since `overflow-y: clip` computes back to `hidden` next to a scrolling axis,
+	   and Chrome still steers wheel deltas into a `hidden` axis that has room. The
+	   reveal offsets each card down by 18px on its way in, which is exactly that
+	   much room: a wheel tick over the gallery spent itself on those 18px instead
+	   of the page, so the page felt stuck on this section. Clipping the offset at
+	   the list, one level inside the scroller, leaves the scroller with nothing to
+	   scroll vertically and the wheel goes back to the page. */
+	.rail {
 		overflow-x: auto;
 		scroll-snap-type: x mandatory;
 		scroll-padding-inline: var(--gutter);
@@ -227,8 +229,23 @@
 		scrollbar-width: none;
 	}
 
-	.cards::-webkit-scrollbar {
+	.rail::-webkit-scrollbar {
 		display: none;
+	}
+
+	.cards {
+		display: flex;
+		/* Cards size to their own content. Stretching them to a shared height
+		   squeezes a three-line caption into the two-line box the shorter cards
+		   set, and the clipping below cuts the overflow rather than letting it
+		   merely spill. */
+		align-items: flex-start;
+		gap: 1.25rem;
+		list-style: none;
+		margin: 0;
+		width: max-content;
+		padding-inline: var(--gutter);
+		overflow: hidden;
 	}
 
 	.cards li {
@@ -284,10 +301,10 @@
 		/* Apple insets the caption 15px from each tile edge rather than running it
 		   flush, which keeps the text off the card's corner radius. */
 		padding-inline: 0.9375rem;
-		/* Reserve three lines on every card. The rail's `overflow-x: auto` forces
-		   `overflow-y: auto`, so a caption that runs longer than its neighbours is
-		   clipped rather than spilling; reserving the space up front avoids that
-		   and squares off the bottom of the row. */
+		/* Reserve three lines on every card. The list clips its overflow, so a
+		   caption that runs longer than its neighbours is cut rather than
+		   spilling; reserving the space up front avoids that and squares off the
+		   bottom of the row. */
 		min-height: calc(1.47em * 3);
 		font-size: 1.0625rem;
 		line-height: 1.47;
