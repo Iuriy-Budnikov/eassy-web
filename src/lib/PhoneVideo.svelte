@@ -166,7 +166,7 @@
 </div>
 
 <style>
-	/* Judge this by the height it lands on, not the width — at a 912/1892 aspect
+	/* Judge this by the height it lands on, not the width — at a 912/1872 aspect
 	   every rem of width costs roughly two of height, so the 25rem default is
 	   already an 830px-tall block. The cap itself comes from `maxWidth`. */
 	.frame {
@@ -187,7 +187,7 @@
 		width: 100%;
 		height: auto;
 		/* Matches the encoded output, so nothing shifts before metadata lands. */
-		aspect-ratio: 912 / 1892;
+		aspect-ratio: 912 / 1872;
 		/* Before the poster paints the box is empty, and screening an empty (white)
 		   box flashes a white rectangle. Black is the identity colour for `screen`,
 		   so this makes the pre-load state indistinguishable from the page. */
