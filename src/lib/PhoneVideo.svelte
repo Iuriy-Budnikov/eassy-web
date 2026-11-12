@@ -4,9 +4,9 @@
 	 *
 	 * The source clips already contain a rendered iPhone on a pure black
 	 * background, so there is no CSS device frame here — `mix-blend-mode: screen`
-	 * drops the black against the page. That also means the clips must stay
-	 * black-surrounded; a recording with any other backdrop would show as a
-	 * rectangle.
+	 * drops the black against whatever holds it. That holder must itself be
+	 * pure black (the homepage's `.stage`, which stays black in both themes);
+	 * on any other backdrop the clip shows as a rectangle.
 	 *
 	 * Playback is driven by hand rather than by the `autoplay` attribute so a
 	 * video that is nowhere near the viewport never decodes.

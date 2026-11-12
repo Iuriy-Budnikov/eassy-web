@@ -43,7 +43,7 @@
 		background: var(--surface);
 		border: 1px solid var(--border-strong);
 		border-radius: var(--radius-700);
-		box-shadow: 0 8px 32px rgb(0 0 0 / 45%);
+		box-shadow: 0 12px 40px -12px rgb(0 0 0 / 35%);
 	}
 
 	p {
@@ -91,13 +91,13 @@
 	}
 
 	.accept {
-		background: var(--accent);
-		border: 1px solid var(--accent);
-		color: var(--brand-ink);
+		background: var(--btn-bg);
+		border: 1px solid var(--btn-bg);
+		color: var(--btn-fg);
 	}
 
 	.accept:hover {
-		filter: brightness(1.08);
+		opacity: 0.85;
 	}
 
 	@media (max-width: 40rem) {

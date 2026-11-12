@@ -39,7 +39,7 @@
 		gap: var(--space-16);
 		max-width: var(--width-page);
 		margin-inline: auto;
-		padding: var(--space-40) var(--space-16);
+		padding: var(--space-40) var(--gutter);
 	}
 
 	.logo {
@@ -55,6 +55,9 @@
 
 	.logo img {
 		border-radius: 22%;
+		/* The icon's ink matches the dark page, so a hairline keeps its shape. */
+		outline: 1px solid var(--border-strong);
+		outline-offset: -1px;
 	}
 
 	nav {

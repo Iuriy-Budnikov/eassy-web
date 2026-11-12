@@ -21,14 +21,10 @@
 
 <style>
 	/*
-	 * Long-form pages, set to match the homepage: same black fill, the shared
-	 * <SiteHeader />, and the same Apple-derived type scale — semibold rather than bold, with
-	 * tracking in em so it holds as the clamps scale down.
-	 *
-	 * Where it deliberately departs from the homepage: body copy here is regular
-	 * weight at a longer line height. The homepage sets its lead paragraphs
-	 * semibold because they are three lines of marketing; several thousand words
-	 * of policy set that way would be punishing to read.
+	 * Long-form pages, set to match the homepage: the same paper ground, the
+	 * shared <SiteHeader />, and medium-weight headlines with tracking in em so
+	 * it holds as the clamps scale down. Body copy runs at a longer line height
+	 * and a narrower measure than anything on the homepage, for reading.
 	 */
 
 	.page {
@@ -38,14 +34,14 @@
 	.wrap {
 		max-width: var(--width-prose);
 		margin-inline: auto;
-		padding: var(--space-40) var(--space-16) clamp(var(--space-80), 10vw, var(--space-128));
+		padding: var(--space-56) var(--gutter) clamp(var(--space-80), 10vw, var(--space-128));
 	}
 
 	main :global(h1) {
 		font-size: clamp(2.25rem, 4.6vw, 3.5rem);
 		line-height: 1.0715;
 		letter-spacing: -0.005em;
-		font-weight: var(--weight-semibold);
+		font-weight: var(--weight-medium);
 		margin: 0 0 var(--space-32);
 	}
 
@@ -53,7 +49,7 @@
 		font-size: clamp(1.5rem, 2.6vw, 2rem);
 		line-height: 1.2;
 		letter-spacing: -0.003em;
-		font-weight: var(--weight-semibold);
+		font-weight: var(--weight-medium);
 		margin: clamp(var(--space-56), 6vw, var(--space-80)) 0 var(--space-24);
 		scroll-margin-top: var(--space-24);
 	}
@@ -62,7 +58,7 @@
 		font-size: var(--font-size-300);
 		line-height: 1.35;
 		letter-spacing: -0.002em;
-		font-weight: var(--weight-semibold);
+		font-weight: var(--weight-medium);
 		margin: var(--space-32) 0 var(--space-12);
 	}
 
